@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      MySQL 06. MySQL - Table (조회4 index, where) &middot; JungPadak 블로그
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="../public/SJ.PNG" title="View on Gravatar" alt="View on Gravatar" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>창업가 되기 위한 재료모으기</strong> learning to be a giant.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me: 
+        
+        
+        
+        <a href="https://www.linkedin.com/in/seung-joon-jung">
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="https://github.com/junapdak">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:junapossible@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/">
+          Categories
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/#til">
+                TIL (Today I Learned)
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/#javascript">
+                javascript
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      2021 @jungpadak 
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home" title="JungPadak 블로그">
+              <img class="masthead-logo" src="/public/dolphin.png"/>
+            </a>
+            <small><a href="http://jungpadak.github.io/"">JungPadak 블로그<a></small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">MySQL 06. MySQL - Table (조회4 index, where)</h1>
+  <span class="post-date">21 Mar 2017</span>
+   | 
+  
+    <a href="/blog/tags/#mysql" class="post-tag">MySQL</a>
+  
+    <a href="/blog/tags/#데이터베이스" class="post-tag">데이터베이스</a>
+  
+  
+  <article>
+    <blockquote>
+  <p><a href="https://opentutorials.org/course/195">생활코딩 - MySQL </a></p>
+</blockquote>
+
+<h1 id="index">index</h1>
+<ul>
+  <li>색인, 조회할 때 원하는 행을 빠르게 찾을 수 있게 준비해둔 데이터</li>
+  <li>데이터베이스의 성능이 중요한 경우 인덱스 설계가 중요하다.</li>
+</ul>
+
+<h2 id="인덱스-정의-방법">인덱스 정의 방법</h2>
+<ul>
+  <li>자주 조회되는 칼럼에 적용</li>
+  <li>조회 시 오랜시간을 소모하는 컬럼에 적용</li>
+  <li>데이터가 긴 경우 인덱스를 사용하지 않는다.</li>
+</ul>
+
+<h2 id="인덱스의-종류">인덱스의 종류</h2>
+<ul>
+  <li>primary key: 중복되지 않는 유일한 키</li>
+  <li>unique key : 중복을 허용하지 않는 유일한 키</li>
+  <li>normal key : 중복을 허용하는 인덱스</li>
+  <li>foreign key : 다른 테이블과의 관계성을 부여하는 키</li>
+  <li>full text : 자연어 검색, myisam에서만 지원</li>
+</ul>
+
+<h2 id="예제에서-사용한-테이블">예제에서 사용한 테이블</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DROP TABLE IF EXISTS <span class="sb">`</span>student<span class="sb">`</span><span class="p">;</span>
+CREATE TABLE <span class="sb">`</span>student<span class="sb">`</span> <span class="o">(</span>
+  <span class="sb">`</span><span class="nb">id</span><span class="sb">`</span> tinyint<span class="o">(</span>4<span class="o">)</span> NOT NULL AUTO_INCREMENT,
+  <span class="sb">`</span>name<span class="sb">`</span> char<span class="o">(</span>4<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>address<span class="sb">`</span> varchar<span class="o">(</span>50<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>department<span class="sb">`</span> enum<span class="o">(</span><span class="s1">'국문과'</span>,<span class="s1">'영문과'</span>,<span class="s1">'컴퓨터공학과'</span>,<span class="s1">'전자공학과'</span>,<span class="s1">'물리학과'</span><span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>introduction<span class="sb">`</span> text NOT NULL,
+  <span class="sb">`</span>number<span class="sb">`</span> char<span class="o">(</span>255<span class="o">)</span> NOT NULL,
+  PRIMARY KEY <span class="o">(</span><span class="sb">`</span><span class="nb">id</span><span class="sb">`</span><span class="o">)</span>,
+  UNIQUE KEY <span class="sb">`</span>idx_number<span class="sb">`</span> <span class="o">(</span><span class="sb">`</span>number<span class="sb">`</span><span class="o">)</span> USING BTREE,
+  KEY <span class="sb">`</span>idx_department<span class="sb">`</span> <span class="o">(</span><span class="sb">`</span>department<span class="sb">`</span><span class="o">)</span>,
+  KEY <span class="sb">`</span>idx_department_name<span class="sb">`</span> <span class="o">(</span><span class="sb">`</span>department<span class="sb">`</span>,<span class="sb">`</span>address<span class="sb">`</span><span class="o">)</span>,
+  FULLTEXT KEY <span class="sb">`</span>idx_introduction<span class="sb">`</span> <span class="o">(</span><span class="sb">`</span>introduction<span class="sb">`</span><span class="o">)</span>
+<span class="o">)</span> <span class="nv">ENGINE</span><span class="o">=</span>MyISAM <span class="nv">AUTO_INCREMENT</span><span class="o">=</span>9 DEFAULT <span class="nv">CHARSET</span><span class="o">=</span>utf8<span class="p">;</span>
+
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>1, <span class="s1">'이숙경'</span>, <span class="s1">'청주'</span>, <span class="s1">'컴퓨터공학과'</span>, <span class="s1">'저는 컴퓨터 공학과에 다닙니다. computer'</span>, <span class="s1">'0212031'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>2, <span class="s1">'박재숙'</span>, <span class="s1">'서울'</span>, <span class="s1">'영문과'</span>, <span class="s1">'저는 영문과에 다닙니다.'</span>, <span class="s1">'0512321'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>3, <span class="s1">'백태호'</span>, <span class="s1">'경주'</span>, <span class="s1">'컴퓨터공학과'</span>, <span class="s1">'저는 컴퓨터 공학과에 다니고 경주에서 왔습니다.'</span>, <span class="s1">'0913134'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>4, <span class="s1">'김경훈'</span>, <span class="s1">'제천'</span>, <span class="s1">'국문과'</span>, <span class="s1">'제천이 고향이고 국문과에 다닙니다.'</span>, <span class="s1">'9813413'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>6, <span class="s1">'김경진'</span>, <span class="s1">'제주'</span>, <span class="s1">'국문과'</span>, <span class="s1">'이번에 국문과에 입학한 김경진이라고 합니다. 제주에서 왔어요.'</span>, <span class="s1">'0534543'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>7, <span class="s1">'박경호'</span>, <span class="s1">'제주'</span>, <span class="s1">'국문과'</span>, <span class="s1">'박경호입니다. 잘 부탁드립니다.'</span>, <span class="s1">'0134511'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>8, <span class="s1">'김정인'</span>, <span class="s1">'대전'</span>, <span class="s1">'영문과'</span>, <span class="s1">'김정인입니다. 대전에서 왔고, 영문과에 다닙니다.'</span>, <span class="s1">'0034543'</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div></div>
+<h2 id="primary-key">primary key</h2>
+<ul>
+  <li>테이블 전체를 통틀어서 중복되지 않는 값을 지정해야 한다.</li>
+  <li>where 문을 이용해서 데이터를 조회할 때 가장 <code class="highlighter-rouge">고속</code>으로 데이터를 가져올 수 있다.</li>
+  <li>테이블마다 딱 하나의 primary key를 가질 수 있다.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 설정</span>
+PRIMARY KEY <span class="o">(</span><span class="sb">`</span><span class="nb">id</span><span class="sb">`</span><span class="o">)</span>
+
+<span class="c"># 예시</span>
+SELECT <span class="k">*</span> FROM student WHERE <span class="nb">id</span><span class="o">=</span>3<span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="unique-key">unique key</h2>
+<ul>
+  <li>테이블 전체를 통틀어서 중복되지 않는 값을 지정해야 한다. (== primary key)</li>
+  <li>고속으로 데이터를 가져올 수 있다.</li>
+  <li>여러개의 unique key를 지정할 수 있다.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 설정</span>
+UNIQUE KEY <span class="sb">`</span>idx_number<span class="sb">`</span> <span class="o">(</span><span class="sb">`</span>number<span class="sb">`</span><span class="o">)</span> USING BTREE
+
+<span class="c"># 예시</span>
+SELECT <span class="k">*</span> FROM student WHERE <span class="nv">number</span><span class="o">=</span>0534543<span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="normal-key-중복키">normal key, 중복키</h2>
+<ul>
+  <li>중복을 허용한다.</li>
+  <li>primary, unique 보다 속도가 느리다.</li>
+  <li>여러개의 키를 지정할 수 있다.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 설정</span>
+KEY <span class="sb">`</span>idx_department<span class="sb">`</span> <span class="o">(</span><span class="sb">`</span>department<span class="sb">`</span><span class="o">)</span>,
+KEY <span class="sb">`</span>idx_department_name<span class="sb">`</span> <span class="o">(</span><span class="sb">`</span>department<span class="sb">`</span>,<span class="sb">`</span>address<span class="sb">`</span><span class="o">)</span>
+
+<span class="c"># 예시</span>
+SELECT <span class="k">*</span> FROM student WHERE <span class="nv">department</span><span class="o">=</span><span class="s1">'국문과'</span><span class="p">;</span>
+SELECT <span class="k">*</span> FROM student WHERE <span class="nv">department</span><span class="o">=</span><span class="s1">'국문과'</span> AND <span class="nv">address</span><span class="o">=</span><span class="s1">'제주'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="full-text">Full Text</h2>
+<ul>
+  <li>mysql의 기본설정(ft_min_word_len)이 4로 되어 있기 때문에 최소 4글자 이상을 입력하거나 이 값을 조정해야 한다.</li>
+  <li>mysql은 전문 검색 엔진이 아니기 때문에 한글 검색이 잘 안된다.</li>
+  <li>전문검색엔진으로 lucene, sphinx 참고 (무료, 성능 좋음)</li>
+  <li>스토리지 엔진 중 myisam에서만 사용가능</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 설정</span>
+<span class="nv">ENGINE</span><span class="o">=</span>MyISAM
+
+<span class="c"># 예시</span>
+SELECT introduction, MATCH<span class="o">(</span>introduction<span class="o">)</span> AGAINST<span class="o">(</span><span class="s1">'영문과에'</span><span class="o">)</span> FROM student WHERE MATCH <span class="o">(</span>introduction<span class="o">)</span> AGAINST<span class="o">(</span><span class="s1">'영문과에'</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div></div>
+
+  </article>
+</div>
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://jungpadak-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/haha/nodejs/2021/06/25/%EC%B2%AB%EA%B8%80/">
+            nodejs 설치 및 실행
+            <small>25 Jun 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/algorithm/2017/11/04/nested-list/">
+            hackerrank - Nested Lists
+            <small>04 Nov 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/algorithm/2017/11/04/Finding-the-percentage/">
+            hackerrank - Finding the percentage
+            <small>04 Nov 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+<div class="comments">
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+var disqus_config = function () {
+  this.page.url = 'http://localhost:4000/mysql/2017/03/21/mysql-09-table-index/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/mysql/2017/03/21/mysql-09-table-index'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = '//jungpadak-github-io.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if (target === toggle) {
+            checkbox.checked = !checkbox.checked;
+            e.preventDefault();
+          } else if (checkbox.checked && !sidebar.contains(target)) {
+            /* click outside the sidebar when sidebar is open */
+            checkbox.checked = false;
+          }
+        }, false);
+      })(document);
+    </script>
+    
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-00000000-1', 'auto');
+ga('send', 'pageview');
+    </script>
+    
+  </body>
+  
+  <script id="dsq-count-scr" src="//jungpadak-github-io.disqus.com/count.js" async></script>
+  
+</html>

@@ -1,0 +1,67 @@
+I"�<h2 id="문제">문제</h2>
+<blockquote>
+  <p>reverseStr 메소드는 String형 변수 str을 매개변수로 입력받습니다.
+str에 나타나는 문자를 큰것부터 작은 순으로 정렬해 새로운 String을 리턴해주세요.
+str는 영문 대소문자로만 구성되어 있으며, 대문자는 소문자보다 작은 것으로 간주합니다.
+예를들어 str이 “Zbcdefg”면 “gfedcbZ”을 리턴하면 됩니다.</p>
+</blockquote>
+
+<h2 id="풀이코드-java">풀이코드 (java)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReverseStr</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">reverseStr</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">){</span>
+    <span class="nc">String</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+    <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">array</span><span class="o">);</span>
+    <span class="nc">Collections</span><span class="o">.</span><span class="na">reverse</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">array</span><span class="o">));</span>
+    <span class="k">return</span>  <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">""</span><span class="o">,</span><span class="n">array</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="c1">// 아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">ReverseStr</span> <span class="n">rs</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ReverseStr</span><span class="o">();</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="n">rs</span><span class="o">.</span><span class="na">reverseStr</span><span class="o">(</span><span class="s">"Zbcdefg"</span><span class="o">)</span> <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-코드">다른사람 코드</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReverseStr</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">reverseStr</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">){</span>
+      <span class="kt">char</span><span class="o">[]</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+      <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">sol</span><span class="o">);</span>
+      <span class="k">return</span> <span class="k">new</span> <span class="nf">StringBuilder</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">sol</span><span class="o">)).</span><span class="na">reverse</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ReverseStr</span> <span class="n">rs</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ReverseStr</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="n">rs</span><span class="o">.</span><span class="na">reverseStr</span><span class="o">(</span><span class="s">"Zbcdefg"</span><span class="o">)</span> <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReverseStr</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">reverseStr</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">){</span>
+        <span class="nc">String</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">array</span><span class="o">,</span>  <span class="nc">Collections</span><span class="o">.</span><span class="na">reverseOrder</span><span class="o">());</span>
+
+        <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="n">array</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ReverseStr</span> <span class="n">rs</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ReverseStr</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="n">rs</span><span class="o">.</span><span class="na">reverseStr</span><span class="o">(</span><span class="s">"Zbcdefg"</span><span class="o">)</span> <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+:ET

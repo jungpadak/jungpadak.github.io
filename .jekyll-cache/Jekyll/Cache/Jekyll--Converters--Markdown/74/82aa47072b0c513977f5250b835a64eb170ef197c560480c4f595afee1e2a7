@@ -1,0 +1,35 @@
+I"�	<blockquote>
+  <p><a href="https://opentutorials.org/course/195">생활코딩 - MySQL </a></p>
+</blockquote>
+
+<h1 id="mysql-monitor">mysql monitor</h1>
+<ul>
+  <li>CLI 환경인 mysql monitor에서 테이블 데이터를 조회 하는 방법을 살펴본다.</li>
+  <li>GUI 환경인 phpMyAdmin에서 쉽게 동일한 작업이 가능하다.</li>
+</ul>
+
+<h2 id="조회">조회</h2>
+<ul>
+  <li>테이블에서 데이터를 조회</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 문법</span>
+<span class="c"># 중복 사용시 순서가 중요하다.</span>
+SELECT 칼럼명1, 칼럼명2
+      <span class="o">[</span>FROM 테이블명 <span class="o">]</span> <span class="c"># 생략가능</span>
+      <span class="o">[</span>GROUP BY 칼럼명] <span class="c"># 생략가능</span>
+      <span class="o">[</span>ORDER BY 칼럼명 <span class="o">[</span>ASC | DESC]] <span class="c"># 생략가능</span>
+      <span class="o">[</span>LIMIT offset, 조회 할 행의 수] <span class="c"># 생략가능</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 예시</span>
+SELECT <span class="k">*</span> FROM student<span class="p">;</span>
+SELECT name, birthday FROM student<span class="p">;</span>
+SELECT <span class="k">*</span> FROM student WHERE <span class="nb">id</span><span class="o">=</span>3<span class="p">;</span>
+SELECT <span class="k">*</span> FROM student WHERE <span class="nv">sex</span><span class="o">=</span><span class="s1">'남자'</span> AND <span class="nv">address</span><span class="o">=</span><span class="s1">'서울'</span><span class="p">;</span>
+SELECT <span class="k">*</span> FROM student WHERE <span class="nv">sex</span><span class="o">=</span><span class="s1">'여자'</span> OR <span class="nv">address</span><span class="o">=</span><span class="s1">'서울'</span><span class="p">;</span>
+SELECT <span class="k">*</span> FROM student LIMIT 1<span class="p">;</span> <span class="c"># 1개만</span>
+SELECT <span class="k">*</span> FROM student LIMIT 1,1<span class="p">;</span> <span class="c"># index 1번부터 1개만</span>
+SELECT <span class="k">*</span> FROM student WHERE <span class="nv">sex</span><span class="o">=</span><span class="s1">'남자'</span> LIMIT 2<span class="p">;</span> <span class="c"># 남자 중에 2개만</span>
+</code></pre></div></div>
+:ET

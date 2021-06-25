@@ -1,0 +1,82 @@
+I"<blockquote>
+  <p><a href="https://opentutorials.org/course/195">생활코딩 - MySQL </a></p>
+</blockquote>
+
+<h1 id="mysql-monitor">mysql monitor</h1>
+<ul>
+  <li>CLI 환경인 mysql monitor에서 테이블 데이터를 삽입, 수정, 삭제, 조회 하는 방법을 살펴본다.</li>
+  <li>GUI 환경인 phpMyAdmin에서 쉽게 동일한 작업이 가능하다.</li>
+</ul>
+
+<h2 id="삽입">삽입</h2>
+<ul>
+  <li>테이블에 데이터를 삽입한다.</li>
+  <li><code class="highlighter-rouge">insert into</code> 명령어를 사용</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 문법</span>
+INSERT INTO table_name VALUES <span class="o">(</span>value1, value2, value3,...<span class="o">)</span>
+INSERT INTO table_name <span class="o">(</span>column1, column2, column3,...<span class="o">)</span> VALUES <span class="o">(</span>value1, value2, value3,...<span class="o">)</span>
+
+<span class="c"># 예제</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span><span class="s1">'2'</span>, <span class="s1">'leezche'</span>, <span class="s1">'여자'</span>, <span class="s1">'서울'</span>, <span class="s1">'2000-10-26'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> <span class="o">(</span><span class="sb">`</span><span class="nb">id</span><span class="sb">`</span>, <span class="sb">`</span>name<span class="sb">`</span>, <span class="sb">`</span>sex<span class="sb">`</span>, <span class="sb">`</span>address<span class="sb">`</span>, <span class="sb">`</span>birthday<span class="sb">`</span><span class="o">)</span> VALUES <span class="o">(</span><span class="s1">'1'</span>, <span class="s1">'egoing'</span>, <span class="s1">'남자'</span>, <span class="s1">'seoul'</span>, <span class="s1">'2000-11-16'</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div></div>
+<hr />
+<h2 id="수정">수정</h2>
+<ul>
+  <li>테이블에 데이터 변경한다.</li>
+  <li><code class="highlighter-rouge">update ... set</code> 명령어를 사용</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 문법</span>
+UPDATE 테이블명 SET 컬럼1<span class="o">=</span>컬럼1의 값, 컬럼2<span class="o">=</span>컬럼2의 값 WHERE 대상이 될 컬럼명<span class="o">=</span>컬럼의 값
+
+<span class="c">#예제</span>
+UPDATE <span class="sb">`</span>student<span class="sb">`</span> SET <span class="nv">address</span><span class="o">=</span><span class="s1">'서울'</span><span class="p">;</span>
+UPDATE <span class="sb">`</span>student<span class="sb">`</span> SET <span class="nv">name</span><span class="o">=</span><span class="s1">'이진경'</span> WHERE <span class="nb">id</span><span class="o">=</span>1<span class="p">;</span>
+UPDATE <span class="sb">`</span>student<span class="sb">`</span> SET <span class="nv">name</span><span class="o">=</span><span class="s1">'이고잉'</span>, <span class="nv">birthday</span><span class="o">=</span><span class="s1">'2001-4-1'</span> WHERE <span class="nb">id</span><span class="o">=</span>3<span class="p">;</span>
+</code></pre></div></div>
+<hr />
+<h2 id="삭제">삭제</h2>
+<ul>
+  <li>테이블에 데이터를 삭제한다.</li>
+  <li><code class="highlighter-rouge">DELETE FROM</code>, <code class="highlighter-rouge">TRUNCATE</code>, <code class="highlighter-rouge">DROP TABLE</code> 명령어를 사용한다.
+    <h3 id="delete">DELETE</h3>
+  </li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 문법</span>
+DELETE FROM 테이블명 <span class="o">[</span>WHERE 삭제하려는 칼럼 명<span class="o">=</span>값]
+
+<span class="c"># 예제</span>
+DELETE FROM student WHERE <span class="nb">id</span> <span class="o">=</span> 2<span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="truncate">TRUNCATE</h3>
+<ul>
+  <li>테이블의 전체 데이터를 삭제</li>
+  <li>테이블에 외부키(foreign key)가 없다면 DELETE보다 훨씬 빠르게 삭제됨</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 문법</span>
+TRUNCATE 테이블명
+
+<span class="c"># 예제</span>
+TRUNCATE student<span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="drop-table">DROP TABLE</h3>
+<ul>
+  <li>테이블을 삭제한다</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 문법</span>
+DROP TABLE 테이블명<span class="p">;</span>
+
+<span class="c"># 예제</span>
+DROP TABLE student<span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+:ET

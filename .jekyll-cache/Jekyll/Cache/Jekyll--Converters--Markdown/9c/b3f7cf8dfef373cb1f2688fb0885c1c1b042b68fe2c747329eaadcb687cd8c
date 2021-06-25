@@ -1,0 +1,35 @@
+I"z<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/14#">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>1937년 Collatz란 사람에 의해 제기된 이 추측은, 입력된 수가 짝수라면 2로 나누고, 홀수라면 3을 곱하고 1을 더한 다음, 결과로 나온 수에 같은 작업을 1이 될 때까지 반복할 경우 모든 수가 1이 된다는 추측입니다. 예를 들어, 입력된 수가 6이라면 6→3→10→5→16→8→4→2→1 이 되어 총 8번 만에 1이 됩니다. collatz 함수를 만들어 입력된 수가 몇 번 만에 1이 되는지 반환해 주세요. 단, 500번을 반복해도 1이 되지 않는다면 –1을 반환해 주세요.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 인자가 1보다 크면 계속 연산을 진행 &gt; 1이 되는 순서를 리턴 &gt; 순서가 500보다 크면 -1 리턴
+</span><span class="k">def</span> <span class="nf">collatz</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="n">num</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">i</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">500</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 500번 반복하여 연산을 진행 &gt; 1이 되는 순서를 리턴 &gt; 500번 반복해도 1이 되지 않으면 -1 리턴
+</span><span class="k">def</span> <span class="nf">collatz</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">num</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">collatz</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li><code class="highlighter-rouge">3항 연산자</code>를 잘 활용하자 A if 조건 else B</li>
+</ul>
+:ET

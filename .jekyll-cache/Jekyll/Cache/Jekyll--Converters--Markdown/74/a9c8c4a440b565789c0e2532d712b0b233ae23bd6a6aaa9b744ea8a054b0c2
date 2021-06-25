@@ -1,0 +1,39 @@
+I"�<h1 id="level-1-제일-작은-수-제거하기">level 1. 제일 작은 수 제거하기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/121">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>rm_small함수는 list타입 변수 mylist을 매개변수로 입력받습니다.
+mylist 에서 가장 작은 수를 제거한 리스트를 리턴하고, mylist의 원소가 1개 이하인 경우는 []를 리턴하는 함수를 완성하세요.
+예를들어 mylist가 [4,3,2,1]인 경우는 [4,3,2]를 리턴 하고, [10, 8, 22]면 [10, 22]를 리턴 합니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 풀이1
+</span><span class="k">def</span> <span class="nf">rm_small</span><span class="p">(</span><span class="n">mylist</span><span class="p">):</span>
+    <span class="n">mylist</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">mylist</span><span class="p">))</span> <span class="c1">#min() - O(N) 시간복잡도
+</span>    <span class="k">return</span> <span class="n">mylist</span>
+
+
+<span class="c1"># 풀이2 - filter 사용
+</span><span class="k">def</span> <span class="nf">rm_small</span><span class="p">(</span><span class="n">mylist</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="n">mylist</span><span class="p">))</span>
+
+
+<span class="c1"># 풀이3
+</span><span class="k">def</span> <span class="nf">rm_samll</span><span class="p">(</span><span class="n">mylist</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mylist</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">mylist</span><span class="p">)]</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"결과 {} "</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">rm_small</span><span class="p">(</span><span class="n">my_list</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>min(), max() 함수를 이용하면  인수로 반복 가능(iterable)한 자료형을 입력받아 그 최소값, 최대값을 리턴한다.</li>
+  <li>iterable 의 의미는 member를 하나씩 차례로 반환 가능한 object를 말한다.</li>
+  <li>iterable 의 예로는 sequence type인 list, str, tuple,dic 이 대표적이다.</li>
+</ul>
+:ET

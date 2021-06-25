@@ -1,0 +1,100 @@
+I"�<blockquote>
+  <p><a href="https://codility.com/programmers/lessons/5-prefix_sums/passing_cars/">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A non-empty zero-indexed array A consisting of N integers is given.
+The consecutive elements of array A represent consecutive cars on a road.
+
+Array A contains only 0s and/or 1s:
+
+0 represents a car traveling east,
+1 represents a car traveling west.
+The goal is to count passing cars.
+We say that a pair of cars (P, Q), where 0 ≤ P &lt; Q &lt; N, is passing when P is traveling to the east and Q is traveling to the west.
+
+For example, consider array A such that:
+
+  A[0] = 0
+  A[1] = 1
+  A[2] = 0
+  A[3] = 1
+  A[4] = 1
+We have five pairs of passing cars: (0, 1), (0, 3), (0, 4), (2, 3), (2, 4).
+
+Write a function:
+
+def solution(A)
+
+that, given a non-empty zero-indexed array A of N integers,
+returns the number of pairs of passing cars.
+
+The function should return −1 if the number of pairs of passing cars exceeds 1,000,000,000.
+
+For example, given:
+
+  A[0] = 0
+  A[1] = 1
+  A[2] = 0
+  A[3] = 1
+  A[4] = 1
+the function should return 5, as explained above.
+
+Assume that:
+
+N is an integer within the range [1..100,000];
+each element of array A is an integer that can have one of the following values: 0, 1.
+Complexity:
+
+expected worst-case time complexity is O(N);
+expected worst-case space complexity is O(1),
+beyond input storage (not counting the storage required for input arguments).
+</code></pre></div></div>
+
+<h2 id="풀이코드---on2">풀이코드 - O(n^2)</h2>
+<ul>
+  <li>Detected time complexity: O(N)</li>
+  <li>조합 가능한 (0,1) pair의 갯수를 찾는다</li>
+  <li>조건
+    <ul>
+      <li>0의 index &lt; 1의 index</li>
+      <li>pair의 갯수가 100만이 넘으면 -1 리턴</li>
+      <li>시간 복잡도 O(N)</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">index_zero</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">index_zero</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:].</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">result</span> <span class="o">&gt;</span> <span class="mi">1000000000</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<ul>
+  <li>리스트를 순회하면서, 0의 갯수를 누적해서 더하고, 1을 만나면 누적 값을 result에 합산한다</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">count_zero</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">count_zero</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">count_zero</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">count_zero</span>
+
+    <span class="k">if</span> <span class="n">result</span> <span class="o">&gt;</span> <span class="mi">1000000000</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+:ET

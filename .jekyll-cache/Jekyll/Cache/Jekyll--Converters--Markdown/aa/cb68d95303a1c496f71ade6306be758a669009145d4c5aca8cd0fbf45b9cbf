@@ -1,0 +1,43 @@
+I"�<blockquote>
+  <p><a href="https://leetcode.com/problems/two-sum/description/">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+Example:
+Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="풀이코드">풀이코드</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">two_sum</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="o">-</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">idx</span><span class="p">,</span> <span class="n">nums</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">target</span><span class="o">-</span><span class="n">num</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="다른사람풀이">다른사람풀이</h2>
+<ul>
+  <li>hash table을 활용 (O(n))</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">two_sum</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span><span class="n">target</span><span class="p">):</span>
+    <span class="n">dic</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="o">-</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">dic</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dic</span><span class="p">[</span><span class="n">target</span><span class="o">-</span><span class="n">num</span><span class="p">],</span> <span class="n">i</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></div>
+:ET

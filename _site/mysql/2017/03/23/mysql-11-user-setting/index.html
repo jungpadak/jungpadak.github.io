@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      MySQL 07. MySQL - 사용자 관리, 권한 &middot; JungPadak 블로그
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="../public/SJ.PNG" title="View on Gravatar" alt="View on Gravatar" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>창업가 되기 위한 재료모으기</strong> learning to be a giant.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me: 
+        
+        
+        
+        <a href="https://www.linkedin.com/in/seung-joon-jung">
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="https://github.com/junapdak">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:junapossible@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/">
+          Categories
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/#til">
+                TIL (Today I Learned)
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/#javascript">
+                javascript
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      2021 @jungpadak 
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home" title="JungPadak 블로그">
+              <img class="masthead-logo" src="/public/dolphin.png"/>
+            </a>
+            <small><a href="http://jungpadak.github.io/"">JungPadak 블로그<a></small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">MySQL 07. MySQL - 사용자 관리, 권한</h1>
+  <span class="post-date">23 Mar 2017</span>
+   | 
+  
+    <a href="/blog/tags/#mysql" class="post-tag">MySQL</a>
+  
+    <a href="/blog/tags/#데이터베이스" class="post-tag">데이터베이스</a>
+  
+  
+  <article>
+    <blockquote>
+  <p><a href="https://opentutorials.org/course/195">생활코딩 - MySQL</a> 강의를 듣고 중요한 내용을 정리하였습니다.</p>
+</blockquote>
+
+<h1 id="사용자-권한이란">사용자 권한이란?</h1>
+<ul>
+  <li>사용자에 따라서 접근할 수 있는 DB 데이터와 사용할 수 있는 기능을 제한</li>
+</ul>
+
+<h2 id="grant">GRANT</h2>
+<ul>
+  <li>사용자를 생성하고, 권한을 부여 (grant : 승인하다)</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 문법</span>
+GRANT 권한 ON 데이터베이스.테이블 TO <span class="s1">'아이디'</span>@<span class="s1">'호스트'</span> IDENTIFIED BY <span class="s1">'비밀번호'</span>
+</code></pre></div></div>
+<h3 id="사용자의-제한">사용자의 제한</h3>
+<ul>
+  <li>DB 서버에 접속하는 사용자를 제한한다.</li>
+  <li>아이디@호스트 중에서 호스트는 접속자가 사용하는 머신의 IP를 의미한다. IP를 특정하지 않으려면 ‘%’를 사용
+    <ul>
+      <li>dev@123.100.100.100 : IP 123.100.100.100인 머신에서 접속한 ID dev</li>
+      <li>dev@% : IP 관계없이 ID가 dev인 사용자</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="대상의-제한">대상의 제한</h3>
+<ul>
+  <li>사용자가 제어할 대상이 되는 데이터베이스, 테이블을 지정</li>
+  <li><code class="highlighter-rouge">*</code>를 사용하면 모든 데이터베이스, 테이블을 제어 대상으로 함 (<code class="highlighter-rouge">*.*</code>,<code class="highlighter-rouge">class.*</code>)</li>
+</ul>
+
+<h3 id="권한기능의-제한">권한(기능)의 제한</h3>
+<ul>
+  <li>사용할 수 있는 권한을 제한 (권한은 아래 표 참조 - 상황에 따라 달라진다)</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">개발자</th>
+      <th style="text-align: center">DELETE, INSERT, SELECT, UPDATE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">설계자</td>
+      <td style="text-align: center">ALTER, CREATE, DELETE, DROP, INDEX, INSERT, SELECT, UPDATE, DELETE, INSERT, SELECT, UPDATE</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">DBA</td>
+      <td style="text-align: center">ALL</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="예제---grant">예제 - GRANT</h3>
+
+<ul>
+  <li>ID가 dev, 비밀번호가 1111인 사용자가 class 데이터베이스만 접근하게 하려면 아래와 같이 한다.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql&gt; GRANT DELETE, INSERT, SELECT, UPDATE ON class.<span class="k">*</span> TO <span class="sb">`</span>dev<span class="sb">`</span>@<span class="sb">`</span>%<span class="sb">`</span> IDENTIFIED BY <span class="s1">'1111'</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>ID가 archi, 비밀번호가 1111이고 클라이언트의 IP가 100.100.100.100인 사용자가 모든 데이터베이스에 접근하면서 설계자의 권한 템플릿을 이용하게 한다.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql&gt; GRANT ALTER,CREATE,DELETE,DROP,INDEX,INSERT,SELECT,UPDATE ON <span class="k">*</span>.<span class="k">*</span> TO <span class="sb">`</span>archi<span class="sb">`</span>@<span class="sb">`</span>100.100.100.100<span class="sb">`</span> IDENTIFIED BY <span class="s1">'1111'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="show-grants">SHOW GRANTS</h2>
+<ul>
+  <li><strong>자신</strong> 의 권한이나, 특정 사용자의 권한을 열람한다.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 문법</span>
+mysql&gt; SHOW GRANTS <span class="o">[</span>FOR 사용자]
+
+<span class="c">#예제</span>
+mysql&gt; SHOW GRANTS FOR dev<span class="p">;</span>
++----------------------------------------------------------------+
+| Grants <span class="k">for </span>dev@%                                               |
++----------------------------------------------------------------+
+| GRANT USAGE ON <span class="k">*</span>.<span class="k">*</span> TO <span class="s1">'dev'</span>@<span class="s1">'%'</span>                                |
+| GRANT SELECT, INSERT, UPDATE, DELETE ON <span class="sb">`</span>class<span class="sb">`</span>.<span class="k">*</span> TO <span class="s1">'dev'</span>@<span class="s1">'%'</span> |
++----------------------------------------------------------------+
+
+mysql&gt; SHOW GRANTS FOR <span class="sb">`</span>archi<span class="sb">`</span>@<span class="sb">`</span>100.100.100.100<span class="sb">`</span><span class="p">;</span>
++------------------------------------------------------------------------------------------------------+
+| Grants <span class="k">for </span>archi@100.100.100.100                                                                     |
++------------------------------------------------------------------------------------------------------+
+| GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON <span class="k">*</span>.<span class="k">*</span> TO <span class="s1">'archi'</span>@<span class="s1">'100.100.100.100'</span> |
++------------------------------------------------------------------------------------------------------+
+</code></pre></div></div>
+
+<h2 id="revoke">REVOKE</h2>
+<ul>
+  <li>사용자의 권한을 제거</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 문법</span>
+REVOKE 권한 ON 데이터베이스.테이블 FROM 사용자
+
+<span class="c"># 예제 : 사용자 dev의 데이터베이스 class의 DELETE 권한을 제거</span>
+revoke DELETE on class.<span class="k">*</span> from dev<span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="drop-user">DROP USER</h2>
+<ul>
+  <li>사용자를 삭제</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 문법</span>
+DROP USER user <span class="o">[</span>, user] ...
+
+<span class="c"># 예제</span>
+DROP USER <span class="sb">`</span>dev<span class="sb">`</span>@<span class="sb">`</span>%<span class="sb">`</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="권한-테이블">권한 테이블</h2>
+<ul>
+  <li><a href="https://opentutorials.org/course/195/1406">참고</a></li>
+</ul>
+<center>
+ <figure>
+ <img src="/assets/post-img/mysql/user_privileges.png" alt="views" />
+ <figcaption>DB 권한종류</figcaption>
+ </figure>
+ </center>
+
+<h2 id="phpmyadmin">phpMyAdmin</h2>
+<ul>
+  <li>mysql 클라이언트 phpMyAdmin을 통하여 위와 동일한 사용자 권한 관리가 가능하다.</li>
+  <li>클라이언트를 사용하면 사용자 관리를 편리하고, 정확하게 진행할 수 있기 때문에 가급적이면 phpMyAdmin과 같은 클라이언트를 사용하는 것을 권장한다.</li>
+</ul>
+
+  </article>
+</div>
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://jungpadak-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/haha/nodejs/2021/06/25/%EC%B2%AB%EA%B8%80/">
+            nodejs 설치 및 실행
+            <small>25 Jun 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/algorithm/2017/11/04/nested-list/">
+            hackerrank - Nested Lists
+            <small>04 Nov 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/algorithm/2017/11/04/Finding-the-percentage/">
+            hackerrank - Finding the percentage
+            <small>04 Nov 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+<div class="comments">
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+var disqus_config = function () {
+  this.page.url = 'http://localhost:4000/mysql/2017/03/23/mysql-11-user-setting/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/mysql/2017/03/23/mysql-11-user-setting'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = '//jungpadak-github-io.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if (target === toggle) {
+            checkbox.checked = !checkbox.checked;
+            e.preventDefault();
+          } else if (checkbox.checked && !sidebar.contains(target)) {
+            /* click outside the sidebar when sidebar is open */
+            checkbox.checked = false;
+          }
+        }, false);
+      })(document);
+    </script>
+    
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-00000000-1', 'auto');
+ga('send', 'pageview');
+    </script>
+    
+  </body>
+  
+  <script id="dsq-count-scr" src="//jungpadak-github-io.disqus.com/count.js" async></script>
+  
+</html>

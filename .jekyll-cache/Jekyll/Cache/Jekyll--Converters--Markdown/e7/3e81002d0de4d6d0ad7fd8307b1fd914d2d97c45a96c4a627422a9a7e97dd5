@@ -1,0 +1,32 @@
+I"�<h1 id="level-1-가운데-글자-가져오기">level 1. 가운데 글자 가져오기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/83">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>getMiddle메소드는 하나의 단어를 입력 받습니다. 단어를 입력 받아서 가운데 글자를 반환하도록 getMiddle메소드를 만들어 보세요. 단어의 길이가 짝수일경우 가운데 두글자를 반환하면 됩니다.
+예를들어 입력받은 단어가 power이라면 w를 반환하면 되고, 입력받은 단어가 test라면 es를 반환하면 됩니다.</p>
+
+<h2 id="풀이-1-python">풀이 1 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">string_middle</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">[(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">string_middle</span><span class="p">(</span><span class="s">"power"</span><span class="p">))</span>
+</code></pre></div></div>
+<h2 id="풀이-2-python---3항-연산자-활용">풀이 2 (python) - 3항 연산자 활용</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">string_middle</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="k">else</span> <span class="nb">str</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span><span class="mi">1</span> <span class="p">:</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>슬라이싱 [처음 : 끝] 에서 <code class="highlighter-rouge">끝</code>에 해당하는 인덱스 값은 포함되지 않는다. <br />
+(처음 &lt;= 원하는 값 &lt; 끝)</li>
+  <li>python의 3항 연산자: a if test else b (test 가 참이면 a 거짓이면 b 반환)</li>
+</ul>
+:ET

@@ -1,0 +1,78 @@
+I"#<h1 id="level-1-짝수와-홀수">level 1. 짝수와 홀수</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/121">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>evenOrOdd 메소드는 int형 num을 매개변수로 받습니다.
+num이 짝수일 경우 “Even”을 반환하고 홀수인 경우 “Odd”를 반환하도록 evenOrOdd에 코드를 작성해 보세요.
+num은 0이상의 정수이며, num이 음수인 경우는 없습니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">evenOrOdd</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+	<span class="k">return</span> <span class="s">'Odd'</span> <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="k">else</span> <span class="s">'Even'</span>
+
+<span class="c1">#아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">"결과 : "</span> <span class="o">+</span> <span class="n">evenOrOdd</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"결과 : "</span> <span class="o">+</span> <span class="n">evenOrOdd</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이-python">다른사람 풀이 (Python)</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">evenOrOdd</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s">"Even"</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s">"Odd"</span>
+
+    <span class="k">return</span> <span class="n">s</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>파이썬에도 삼항연산자가 있다는걸 배웠다.</li>
+  <li><code class="highlighter-rouge">a if test else b</code> : test가 true일 경우 a를, 그렇지 않으면 b를 리턴한다.</li>
+</ul>
+
+<hr />
+
+<h2 id="풀이-java">풀이 (Java)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EvenOrOdd</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="nf">evenOrOdd</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">result</span><span class="o">;</span>
+      	<span class="k">if</span><span class="o">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+          <span class="n">result</span> <span class="o">=</span> <span class="s">"Odd"</span><span class="o">;</span>
+        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+          <span class="n">result</span> <span class="o">=</span> <span class="s">"Even"</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"1 2 3 4"</span><span class="o">;</span>
+        <span class="nc">EvenOrOdd</span> <span class="n">evenOrOdd</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EvenOrOdd</span><span class="o">();</span>
+        <span class="c1">//아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"결과 : "</span> <span class="o">+</span> <span class="n">evenOrOdd</span><span class="o">.</span><span class="na">evenOrOdd</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"결과 : "</span> <span class="o">+</span> <span class="n">evenOrOdd</span><span class="o">.</span><span class="na">evenOrOdd</span><span class="o">(</span><span class="mi">2</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이-java">다른사람 풀이 (Java)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EvenOrOdd</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="nf">evenOrOdd</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="s">"Even"</span> <span class="o">:</span> <span class="s">"Odd"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">EvenOrOdd</span> <span class="n">evenOrOdd</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EvenOrOdd</span><span class="o">();</span>
+        <span class="c1">//아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"결과 : "</span> <span class="o">+</span> <span class="n">evenOrOdd</span><span class="o">.</span><span class="na">evenOrOdd</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"결과 : "</span> <span class="o">+</span> <span class="n">evenOrOdd</span><span class="o">.</span><span class="na">evenOrOdd</span><span class="o">(</span><span class="mi">2</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+:ET

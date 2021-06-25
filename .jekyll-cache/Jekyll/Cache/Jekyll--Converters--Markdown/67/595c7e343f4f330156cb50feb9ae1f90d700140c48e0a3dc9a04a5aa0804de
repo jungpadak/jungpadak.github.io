@@ -1,0 +1,34 @@
+I"�<h1 id="level-2-하샤드-수">level 2. 하샤드 수</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/131">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>양의 정수 x가 하샤드 수이려면 x의 자릿수의 합으로 x가 나누어져야 합니다. 예를들어 18의 자릿수 합은 1+8=9이고, 18은 9로 나누어 떨어지므로 18은 하샤드 수입니다.</p>
+
+<p>Harshad함수는 양의 정수 n을 매개변수로 입력받습니다. 이 n이 하샤드수인지 아닌지 판단하는 함수를 완성하세요.
+예를들어 n이 10, 12, 18이면 True를 리턴 11, 13이면 False를 리턴하면 됩니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Harshad</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+		<span class="nb">sum</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span>
+	<span class="k">return</span> <span class="bp">False</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="nb">sum</span> <span class="k">else</span> <span class="bp">True</span>
+
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">Harshad</span><span class="p">(</span><span class="mi">18</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Harshad</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">%</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>int() 내장함수를 통해 문자열 형태의 숫자나 소수점이 있는 숫자 등을 정수 형태로 리턴한다.</li>
+  <li>sum() 내장함수를 통해 매개변수의 합을 구할 수 있다.</li>
+</ul>
+:ET

@@ -1,0 +1,33 @@
+I"�<h1 id="level-2-jadencase-문자열-만들기">level 2. JadenCase 문자열 만들기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/124">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>Jaden_Case함수는 문자열 s을 매개변수로 입력받습니다.
+s에 모든 단어의 첫 알파벳이 대문자이고, 그 외의 알파벳은 소문자인 문자열을 리턴하도록 함수를 완성하세요
+예를들어 s가 “3people unFollowed me for the last week”라면 “3people Unfollowed Me For The Last Week”를 리턴하면 됩니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Jaden_Case</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span>
+	<span class="n">list_s</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+	<span class="n">list_s</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">upper</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_s</span><span class="p">]</span>
+	<span class="k">return</span> <span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">list_s</span><span class="p">)</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">Jaden_Case</span><span class="p">(</span><span class="s">"3people unFollowed me for the last week"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Jaden_Case</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">title</span><span class="p">()</span>
+</code></pre></div></div>
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>String.split() 을 통해서 문자열을 리스트로 바꾼다.</li>
+  <li>’ ‘.join(List) 를 통해서 리스트를 문자열로 바꾼다.</li>
+  <li>String.replace(old, new, 숫자) 를 통해서 문자열 안의 값을 바꿀 수 있다. 숫자 조건을 입력하면 그 숫자 만큼만 변경한다.</li>
+  <li>String.title() 을 통해서 문자열 각단어의 첫 글자를 대문자로 바꾼다.</li>
+</ul>
+:ET

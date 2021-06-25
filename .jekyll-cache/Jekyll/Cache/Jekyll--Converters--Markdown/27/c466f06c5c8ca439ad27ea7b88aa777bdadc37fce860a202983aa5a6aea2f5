@@ -1,0 +1,120 @@
+I"M!<blockquote>
+  <p><a href="https://codility.com/programmers/lessons/4-counting_elements/">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A non-empty zero-indexed array A consisting of N integers is given.
+A permutation is a sequence containing each element from 1 to N once, and only once.
+For example, array A such that:
+
+    A[0] = 4
+    A[1] = 1
+    A[2] = 3
+    A[3] = 2
+is a permutation, but array A such that:
+
+    A[0] = 4
+    A[1] = 1
+    A[2] = 3
+is not a permutation, because value 2 is missing.
+The goal is to check whether array A is a permutation.
+Write a function:
+def solution(A)
+
+that, given a zero-indexed array A, returns 1 if array A is a permutation and 0 if it is not.
+For example, given array A such that:
+
+    A[0] = 4
+    A[1] = 1
+    A[2] = 3
+    A[3] = 2
+the function should return 1.
+Given array A such that:
+
+    A[0] = 4
+    A[1] = 1
+    A[2] = 3
+the function should return 0.
+Assume that:
+
+N is an integer within the range [1..100,000];
+each element of array A is an integer within the range [1..1,000,000,000].
+Complexity:
+
+expected worst-case time complexity is O(N);
+expected worst-case space complexity is O(N), beyond input storage
+(not counting the storage required for input arguments).
+
+</code></pre></div></div>
+
+<h2 id="풀이코드">풀이코드</h2>
+<h3 id="풀이코드-1">풀이코드 1</h3>
+<ul>
+  <li>Detected time complexity: O(N) or O(N * log(N))</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="n">M</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="nb">sum</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<h3 id="풀이코드-2">풀이코드 2</h3>
+<ul>
+  <li>Detected time complexity: O(N^2)</li>
+  <li>문제점 : A = [1000000000] 와 같은 인자가 주어지면, sum(range(max(A)+1)) 부분에서 많은 시간이 소요된다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="nb">sum</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<h3 id="풀이코드-3">풀이코드 3</h3>
+<ul>
+  <li>Detected time complexity: O(N^2)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="c1"># O(N)
+</span>            <span class="k">if</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">:]:</span> <span class="c1"># O(N^2)
+</span>                <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<ul>
+  <li>비트단위 연산을 활용하였다.</li>
+  <li><a href="https://www.codecademy.com/courses/python-intermediate-ko-0tdxd/0/1">bitwise 연산자를 공부하자</a></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+    <span class="n">xorSum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">xorSum</span> <span class="o">^=</span> <span class="n">i</span> <span class="o">^</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">xorSum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<ul>
+  <li>or 연산자 활용</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">A</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="mi">1</span>
+</code></pre></div></div>
+:ET

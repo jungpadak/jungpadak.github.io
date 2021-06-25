@@ -1,0 +1,84 @@
+I"�<h1 id="level-1-문자열-내-마음대로-정렬하기">level 1. 문자열 내 마음대로 정렬하기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/95">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>strange_sort함수는 strings와 n이라는 매개변수를 받아들입니다.
+strings는 문자열로 구성된 리스트인데, 각 문자열을 인덱스 n인 글자를 기준으로 정렬하면 됩니다.</p>
+
+<p>예를들어 strings가 [“sun”, “bed”, “car”]이고 n이 1이면 각 단어의 인덱스 1인 문자 u, e ,a를 기준으로 정렬해야 하므로 결과는 [“car”, “bed”, “sun”]이 됩니다.
+strange_sort함수를 완성해 보세요.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">strange_sort</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">element</span><span class="p">:</span><span class="n">element</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span> <span class="n">strange_sort</span><span class="p">([</span><span class="s">"sun"</span><span class="p">,</span> <span class="s">"bed"</span><span class="p">,</span> <span class="s">"car"</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>sorted() 함수는 정렬된 결과 값을 바로 리턴한다.</li>
+  <li>대문자는 소문자 보다 우선한다. ([‘A’, ‘a’, ‘ab’])</li>
+  <li>Key Functions</li>
+  <li>sorting 할때 <code class="highlighter-rouge">key 값을 기준으로 정렬</code>할 수 있다. <a href="https://docs.python.org/3/howto/sorting.html?highlight=sorting#key-functions">가이드 문서</a>
+    <ul>
+      <li><code class="highlighter-rouge">list.sort()</code>, <code class="highlighter-rouge">sorted()</code> 둘다 정렬시 비교 기준이 되는 key 파라미터를 가질 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 공백을 기준으로 문자열을 나누어 리스트로 변환한다</span>
+<span class="c"># 리스트로 변환시</span>
+<span class="o">&gt;&gt;&gt;</span> sorted<span class="o">(</span><span class="s2">"This is a test string from Andrew"</span>.split<span class="o">()</span>, <span class="nv">key</span><span class="o">=</span>str.lower<span class="o">)</span>
+<span class="o">[</span><span class="s1">'a'</span>, <span class="s1">'Andrew'</span>, <span class="s1">'from'</span>, <span class="s1">'is'</span>, <span class="s1">'string'</span>, <span class="s1">'test'</span>, <span class="s1">'This'</span><span class="o">]</span>
+</code></pre></div></div>
+<ul>
+  <li>
+    <p>key 파라미터의 값은 하나의 인자를 받고, 정렬 목적을 위한 키를 리턴하는 함수가 되어야 한다.</p>
+  </li>
+  <li>
+    <p>일반적으로 어떤 객체를 키로 사용하는 복잡한 객체를 정렬할 때 자주 사용된다.</p>
+  </li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> student_tuples <span class="o">=</span> <span class="o">[</span>
+...     <span class="o">(</span><span class="s1">'john'</span>, <span class="s1">'A'</span>, 15<span class="o">)</span>,
+...     <span class="o">(</span><span class="s1">'jane'</span>, <span class="s1">'B'</span>, 12<span class="o">)</span>,
+...     <span class="o">(</span><span class="s1">'dave'</span>, <span class="s1">'B'</span>, 10<span class="o">)</span>,
+... <span class="o">]</span>
+<span class="o">&gt;&gt;&gt;</span> sorted<span class="o">(</span>student_tuples, <span class="nv">key</span><span class="o">=</span>lambda student: student[2]<span class="o">)</span>   
+<span class="c"># sort by age</span>
+<span class="o">[(</span><span class="s1">'dave'</span>, <span class="s1">'B'</span>, 10<span class="o">)</span>, <span class="o">(</span><span class="s1">'jane'</span>, <span class="s1">'B'</span>, 12<span class="o">)</span>, <span class="o">(</span><span class="s1">'john'</span>, <span class="s1">'A'</span>, 15<span class="o">)]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이와 같은 테크닉은 이름표가 있는 속성을 가진 객체에서도 자주 사용된다.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> class Student:
+...     def __init__<span class="o">(</span>self, name, grade, age<span class="o">)</span>:
+...         self.name <span class="o">=</span> name
+...         self.grade <span class="o">=</span> grade
+...         self.age <span class="o">=</span> age
+...     def __repr__<span class="o">(</span>self<span class="o">)</span>:
+...         <span class="k">return </span>repr<span class="o">((</span>self.name, self.grade, self.age<span class="o">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="highlighter-rouge">__repr__</code> 메서드를 정의하지 않으면 object 클래스가 가진 기본 <code class="highlighter-rouge">__repr__</code> 메서드를 사용한다. 이 함수는 클래스 이름과 변수가 위치하고 있는 메모리 주소를 &lt;&gt;안에 써서 반환한다.</li>
+  <li>repr() 은 <code class="highlighter-rouge">__repr__</code> 메소드를 호출하고, str() 이나 print 는 <code class="highlighter-rouge">__str__</code> 메소드를 호출하도록 되어있는데, <code class="highlighter-rouge">__str__</code> 은 객체의 비공식적인(informal) 문자열을 출력할 때 사용하고, <code class="highlighter-rouge">__repr__</code> 은 공식적인(official) 문자열을 출력할 때 사용한다.</li>
+  <li>쉽게 말하면 <code class="highlighter-rouge">__str__</code> 은 사용자가 보기 쉬운 형태로 보여줄 때 사용하는 것이고, <code class="highlighter-rouge">__repr__</code> 은 시스템(python interpreter)이 해당 객체를 인식할 수 있는 공식적인 문자열로 나타내 줄 때 사용하는 것이다.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> student_objects <span class="o">=</span> <span class="o">[</span>
+...     Student<span class="o">(</span><span class="s1">'john'</span>, <span class="s1">'A'</span>, 15<span class="o">)</span>,
+...     Student<span class="o">(</span><span class="s1">'jane'</span>, <span class="s1">'B'</span>, 12<span class="o">)</span>,
+...     Student<span class="o">(</span><span class="s1">'dave'</span>, <span class="s1">'B'</span>, 10<span class="o">)</span>,
+... <span class="o">]</span>
+<span class="o">&gt;&gt;&gt;</span> sorted<span class="o">(</span>student_objects, <span class="nv">key</span><span class="o">=</span>lambda student: student.age<span class="o">)</span>   <span class="c"># sort by age</span>
+<span class="o">[(</span><span class="s1">'dave'</span>, <span class="s1">'B'</span>, 10<span class="o">)</span>, <span class="o">(</span><span class="s1">'jane'</span>, <span class="s1">'B'</span>, 12<span class="o">)</span>, <span class="o">(</span><span class="s1">'john'</span>, <span class="s1">'A'</span>, 15<span class="o">)]</span>
+</code></pre></div></div>
+:ET

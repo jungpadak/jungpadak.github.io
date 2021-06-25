@@ -1,0 +1,53 @@
+I"Q<blockquote>
+  <p><a href="https://www.inflearn.com/course/%EC%BD%94%EB%94%A9-%EC%9D%B8%ED%84%B0%EB%B7%B0-%EC%99%84%EC%A0%84-%EB%B6%84%EC%84%9D-%ED%92%80%EC%9D%B4-%ED%8C%8C%EC%9D%B4%EC%8D%AC/">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<p>How would you design a stack which, in addition to push and pop,
+also has a function min which returns the minimum element?
+Push, pop, and min should all operate in O(1) time.</p>
+
+<h2 id="풀이코드">풀이코드</h2>
+<ul>
+  <li>O(1) 의 시간복잡도를 가진다는 것은 hash, dictionary 처럼 변수에 직접 접근한다는 의미</li>
+  <li>변수 mins와 min을 추가하여 최소값에 바로 접근 할 수 있도록 한다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Stack</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">mins</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="nb">min</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">mins</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="nb">min</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="nb">min</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="p">.</span><span class="nb">min</span> <span class="o">&gt;</span> <span class="n">item</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="nb">min</span> <span class="o">=</span> <span class="n">item</span>
+
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="nb">min</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">mins</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="nb">min</span>
+
+    <span class="k">def</span> <span class="nf">peak</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+    <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+    <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">get_min</span><span class="p">())</span> <span class="c1"># 3
+</span>    <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">peak</span><span class="p">())</span> <span class="c1"># 5
+</span>    <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">peak</span><span class="p">())</span> <span class="c1"># 4
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">get_min</span><span class="p">())</span> <span class="c1"># 4
+</span>
+</code></pre></div></div>
+:ET

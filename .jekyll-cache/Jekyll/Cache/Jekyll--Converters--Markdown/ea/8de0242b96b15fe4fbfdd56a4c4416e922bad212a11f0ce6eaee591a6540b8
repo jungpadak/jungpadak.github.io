@@ -1,0 +1,93 @@
+I"\<blockquote>
+  <p><a href="https://codility.com/programmers/lessons/3-time_complexity/">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A non-empty zero-indexed array A consisting of N integers is given.
+Array A represents numbers on a tape.
+Any integer P, such that 0 &lt; P &lt; N,
+splits this tape into two non-empty parts: A[0], A[1], ..., A[P − 1] and A[P], A[P + 1], ..., A[N − 1].
+The difference between the two parts is the value of: |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
+In other words, it is the absolute difference between
+the sum of the first part and the sum of the second part.
+
+For example, consider array A such that:
+
+  A[0] = 3
+  A[1] = 1
+  A[2] = 2
+  A[3] = 4
+  A[4] = 3
+
+We can split this tape in four places:
+
+P = 1, difference = |3 − 10| = 7
+P = 2, difference = |4 − 9| = 5
+P = 3, difference = |6 − 7| = 1
+P = 4, difference = |10 − 3| = 7
+
+Write a function: def solution(A)
+that, given a non-empty zero-indexed array A of N integers, returns the minimal difference that can be achieved.
+For example, given:
+
+  A[0] = 3
+  A[1] = 1
+  A[2] = 2
+  A[3] = 4
+  A[4] = 3
+
+the function should return 1, as explained above.
+
+Assume that:
+N is an integer within the range [2..100,000];
+each element of array A is an integer within the range [−1,000..1,000].
+Complexity:
+
+expected worst-case time complexity is O(N);
+expected worst-case space complexity is O(N),
+beyond input storage (not counting the storage required for input arguments).
+</code></pre></div></div>
+
+<h2 id="풀이코드">풀이코드</h2>
+<ul>
+  <li>Detected time complexity: O(N * N)</li>
+  <li><code class="highlighter-rouge">list slice 후, sum() 을 통해서 합계를 구하는 부분이 O(N^2)의 시간 복잡도를 가진다.</code></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">li</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">P</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="n">sum1</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">[:</span><span class="n">P</span><span class="p">])</span> <span class="c1"># O(N^2)
+</span>        <span class="n">sum2</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">P</span><span class="p">:])</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">sum1</span> <span class="o">-</span> <span class="n">sum2</span> <span class="k">if</span> <span class="n">sum1</span> <span class="o">&gt;=</span> <span class="n">sum2</span> <span class="k">else</span> <span class="n">sum2</span> <span class="o">-</span> <span class="n">sum1</span>
+        <span class="n">li</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<ul>
+  <li>Detected time complexity: O(N)</li>
+  <li><code class="highlighter-rouge">abs()</code> 내장 함수를 통해서 숫자의 절대값을 구할 수 있다. abs(-3) » 3, abs(1,2) » 1.2</li>
+  <li>list slice를 사용하지 않는다.</li>
+  <li>min_difference 변수에 None을 담아서 시작한다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">sum_of_part_one</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sum_of_part_two</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">min_difference</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="n">sum_of_part_one</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">sum_of_part_two</span> <span class="o">-=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">difference</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sum_of_part_one</span> <span class="o">-</span> <span class="n">sum_of_part_two</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">min_difference</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">min_difference</span> <span class="o">=</span> <span class="n">difference</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">min_difference</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_difference</span><span class="p">,</span> <span class="n">difference</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">min_difference</span>
+</code></pre></div></div>
+:ET

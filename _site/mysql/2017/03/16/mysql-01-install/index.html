@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      MySQL 01. MySQL 설치 및 환경설정 &middot; JungPadak 블로그
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="../public/SJ.PNG" title="View on Gravatar" alt="View on Gravatar" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>창업가 되기 위한 재료모으기</strong> learning to be a giant.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me: 
+        
+        
+        
+        <a href="https://www.linkedin.com/in/seung-joon-jung">
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="https://github.com/junapdak">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:junapossible@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/">
+          Categories
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/#til">
+                TIL (Today I Learned)
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/#javascript">
+                javascript
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      2021 @jungpadak 
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home" title="JungPadak 블로그">
+              <img class="masthead-logo" src="/public/dolphin.png"/>
+            </a>
+            <small><a href="http://jungpadak.github.io/"">JungPadak 블로그<a></small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">MySQL 01. MySQL 설치 및 환경설정</h1>
+  <span class="post-date">16 Mar 2017</span>
+   | 
+  
+    <a href="/blog/tags/#mysql" class="post-tag">MySQL</a>
+  
+    <a href="/blog/tags/#데이터베이스" class="post-tag">데이터베이스</a>
+  
+  
+  <article>
+    <blockquote>
+  <p><a href="https://opentutorials.org/course/195">생활코딩 - MySQL </a></p>
+</blockquote>
+
+<h1 id="데이터베이스와-mysql">데이터베이스와 MYSQL</h1>
+<ul>
+  <li>데이터베이스란 : 데이터의 저장소</li>
+</ul>
+
+<h2 id="데이터베이스의-종류">데이터베이스의 종류</h2>
+<ul>
+  <li>관계형 데이터베이스
+    <ul>
+      <li>mysql, oracle, mssql</li>
+    </ul>
+  </li>
+  <li>nosql
+    <ul>
+      <li>mongodb 등</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="데이터베이스-시스템의-구성">데이터베이스 시스템의 구성</h2>
+
+<center>
+ <figure>
+ <img src="/assets/post-img/mysql/db.png" alt="views" />
+ <figcaption></figcaption>
+ </figure>
+ </center>
+
+<h3 id="database-server">Database Server</h3>
+<ul>
+  <li>DB 서버 안에 데이터를 저장하고, 저장된 데이터를 수정하거나 삭제하는 등의 제어 관리 기능을 갖고 있는 것</li>
+</ul>
+
+<h3 id="database">Database</h3>
+<ul>
+  <li>Table을 카테고리로 분류한것</li>
+</ul>
+
+<h3 id="table">table</h3>
+<ul>
+  <li>row(행) : 서로 연관되어 있는 데이터의 그룹</li>
+  <li>column(열) : 데이터의 성격에 대한 구분</li>
+  <li>field : 한칸 한칸에 들어가 있는 구체적인 데이터</li>
+  <li>record : 구체적인 데이터의 행</li>
+</ul>
+
+<h3 id="database-client">Database Client</h3>
+<ul>
+  <li>DB 서버에게 요청해서 여러가지 명령을 하거나, 데이터를 가져온다거나 서버의 상태를 체크하기 위한 시스템</li>
+  <li>mysql-client 는 mysql을 설치하면 기본적으로 설치된다.</li>
+</ul>
+
+<hr />
+
+<h1 id="mysql-설치">MySQL 설치</h1>
+<ul>
+  <li><a href="https://github.com/helloheesu/SecretlyGreatly/wiki/%EB%A7%A5%EC%97%90%EC%84%9C-mysql-%EC%84%A4%EC%B9%98-%ED%9B%84-%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0">참고사이트</a> 의 내용을 가져왔습니다.</li>
+</ul>
+
+<h2 id="homebrew를-통한-설치">HomeBrew를 통한 설치</h2>
+
+<h3 id="how-to">how to</h3>
+<ol>
+  <li><a href="http://brew.sh/">HomeBrew</a> 설치</li>
+  <li>mysql 설치 : <code class="highlighter-rouge">$ brew install mysql</code></li>
+  <li>mysql 시작 : <code class="highlighter-rouge">$ mysql.server start</code></li>
+  <li>root 비밀번호 설정 : <code class="highlighter-rouge">$ mysql_secure_installation</code>
+    <ul>
+      <li><code class="highlighter-rouge">Would you like to setup VALIDATE PASSWORD plugin?</code> : 비밀번호 가이드. 복잡한 비밀번호를 사용하도록 제한해주는 플러그인을 사용하려면 <code class="highlighter-rouge">yes</code>, <del>보안은 무시하고</del> 그냥 쓰던 비밀번호 제한받지 않고 쓰고 싶다면 <code class="highlighter-rouge">no</code>.</li>
+      <li><code class="highlighter-rouge">Remove anonymous users?</code> : 익명사용자 삭제할지/계속 사용할지 여부. <code class="highlighter-rouge">no</code> 하면 <code class="highlighter-rouge">$ mysql -uroot</code>가 아니라 <code class="highlighter-rouge">$ mysql</code>만으로도 접속 가능. <code class="highlighter-rouge">yes</code>하면 <code class="highlighter-rouge">-u</code> 옵션 필수.</li>
+      <li><code class="highlighter-rouge">Disallow root login remotely?</code> : localhost외에 다른 ip에서 root 아이디로 원격접속 가능하게 할지. <code class="highlighter-rouge">yes</code>하면 원겹접속 불가.</li>
+      <li><code class="highlighter-rouge">Remove test database and access to it?</code> : mysql에 기본적으로 설정된 test 디비 삭제 여부.</li>
+      <li><code class="highlighter-rouge">Reload privilege tables now?</code> : 하나라도 권한 변경을 했다면 <code class="highlighter-rouge">yes</code> 해서 하는 게 정신건강에 좋을 것입니다.</li>
+    </ul>
+  </li>
+  <li>charset 설정 : <code class="highlighter-rouge">$ mysql -uroot -p</code>로 로그인하고, <code class="highlighter-rouge">&gt; status;</code>로 charset 확인.
+    <ul>
+      <li>기본적으로 charset 4개가 모두 utf8이어서 그대로 두면 됨!</li>
+      <li>혹시나 latin등 다른 값이 있다면 위의 <strong>4. charset UTF-8로 바꾸기</strong> 따라하기. <code class="highlighter-rouge">my.cnf</code>가 기본적으로 존재하지 않으므로 <code class="highlighter-rouge">$ vi /etc/my.cnf</code> 등을 통해 새로 생성.</li>
+    </ul>
+  </li>
+  <li>데몬 실행 <code class="highlighter-rouge">$ brew services start mysql</code> (<a href="https://robots.thoughtbot.com/starting-and-stopping-background-services-with-homebrew">참고</a>)
+    <ul>
+      <li>로그인시 데몬 자동 실행 (To have launchd start mysql at login): <code class="highlighter-rouge">$ ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents</code></li>
+    </ul>
+  </li>
+  <li>+, brew로 설치했다면 환경변수 설정은 필요없어요! :)</li>
+</ol>
+
+<h3 id="versions">versions</h3>
+<p>brew는 기본적으로 최신 버전(5.7)을 제공하지만, 다른 버전(5.6 등)을 설치하고 싶은 경우 <a href="https://github.com/Homebrew/homebrew-versions">brew versions</a>를 사용합니다.</p>
+
+<ol>
+  <li><code class="highlighter-rouge">$ brew tap homebrew/versions</code>로 brew versions를 설치 후,</li>
+  <li><code class="highlighter-rouge">$ brew search mysql</code>로 검색, 원하는 버전의 formula 이름을 확인합니다. (예: <code class="highlighter-rouge">homebrew/versions/mysql56</code>)</li>
+  <li><code class="highlighter-rouge">$ brew install &lt;설치할 formula&gt;</code>으로 mysql 설치. (예: <code class="highlighter-rouge">$ brew install homebrew/versions/mysql56</code>)</li>
+</ol>
+
+  </article>
+</div>
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://jungpadak-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/haha/nodejs/2021/06/25/%EC%B2%AB%EA%B8%80/">
+            nodejs 설치 및 실행
+            <small>25 Jun 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/algorithm/2017/11/04/nested-list/">
+            hackerrank - Nested Lists
+            <small>04 Nov 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/algorithm/2017/11/04/Finding-the-percentage/">
+            hackerrank - Finding the percentage
+            <small>04 Nov 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+<div class="comments">
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+var disqus_config = function () {
+  this.page.url = 'http://localhost:4000/mysql/2017/03/16/mysql-01-install/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/mysql/2017/03/16/mysql-01-install'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = '//jungpadak-github-io.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if (target === toggle) {
+            checkbox.checked = !checkbox.checked;
+            e.preventDefault();
+          } else if (checkbox.checked && !sidebar.contains(target)) {
+            /* click outside the sidebar when sidebar is open */
+            checkbox.checked = false;
+          }
+        }, false);
+      })(document);
+    </script>
+    
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-00000000-1', 'auto');
+ga('send', 'pageview');
+    </script>
+    
+  </body>
+  
+  <script id="dsq-count-scr" src="//jungpadak-github-io.disqus.com/count.js" async></script>
+  
+</html>

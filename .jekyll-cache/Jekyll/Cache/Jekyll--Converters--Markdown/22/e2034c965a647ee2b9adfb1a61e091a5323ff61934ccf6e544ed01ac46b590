@@ -1,0 +1,84 @@
+I"I(<h1 id="level-1-수박수박수박수박수박수">level 1. 수박수박수박수박수박수?</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/108">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>water_melon함수는 정수 n을 매개변수로 입력받습니다.
+길이가 n이고, 수박수박수…와 같은 패턴을 유지하는 문자열을 리턴하도록 함수를 완성하세요.</p>
+
+<p>예를들어 n이 4이면 ‘수박수박’을 리턴하고 3이라면 ‘수박수’를 리턴하면 됩니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">water_melon</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s">"수박"</span><span class="o">*</span><span class="n">n</span><span class="p">)[:</span><span class="n">n</span><span class="p">]</span>
+
+<span class="c1"># 실행을 위한 테스트코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">"n이 3인 경우: "</span> <span class="o">+</span> <span class="n">water_melon</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"n이 4인 경우: "</span> <span class="o">+</span> <span class="n">water_melon</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="풀이-java">풀이 (java)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WaterMelon</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">watermelon</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+    <span class="nc">String</span> <span class="n">result</span><span class="o">=</span><span class="s">""</span><span class="o">;</span>
+
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+      <span class="n">result</span> <span class="o">+=</span> <span class="o">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)?</span> <span class="s">"수"</span> <span class="o">:</span> <span class="s">"박"</span><span class="o">;</span>
+			<span class="o">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="c1">// 실행을 위한 테스트코드입니다.</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span>  <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+		<span class="nc">WaterMelon</span> <span class="n">wm</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WaterMelon</span><span class="o">();</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"n이 3인 경우: "</span> <span class="o">+</span> <span class="n">wm</span><span class="o">.</span><span class="na">watermelon</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"n이 4인 경우: "</span> <span class="o">+</span> <span class="n">wm</span><span class="o">.</span><span class="na">watermelon</span><span class="o">(</span><span class="mi">4</span><span class="o">));</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h2 id="다른사람-풀이java">다른사람 풀이(java)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WaterMelon</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">watermelon</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+        <span class="nc">StringBuffer</span> <span class="n">sf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">sf</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span><span class="o">?</span><span class="s">"수"</span><span class="o">:</span><span class="s">"박"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">sf</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 실행을 위한 테스트코드입니다.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span>  <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="nc">WaterMelon</span> <span class="n">wm</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WaterMelon</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"n이 3인 경우: "</span> <span class="o">+</span> <span class="n">wm</span><span class="o">.</span><span class="na">watermelon</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"n이 4인 경우: "</span> <span class="o">+</span> <span class="n">wm</span><span class="o">.</span><span class="na">watermelon</span><span class="o">(</span><span class="mi">4</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WaterMelon</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">watermelon</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+		<span class="nc">String</span> <span class="n">repeated</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">n</span><span class="o">]).</span><span class="na">replace</span><span class="o">(</span><span class="s">"\0"</span><span class="o">,</span> <span class="s">"수박"</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">repeated</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="n">n</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="c1">// 실행을 위한 테스트코드입니다.</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span>  <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+		<span class="nc">WaterMelon</span> <span class="n">wm</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WaterMelon</span><span class="o">();</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"n이 3인 경우: "</span> <span class="o">+</span> <span class="n">wm</span><span class="o">.</span><span class="na">watermelon</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"n이 4인 경우: "</span> <span class="o">+</span> <span class="n">wm</span><span class="o">.</span><span class="na">watermelon</span><span class="o">(</span><span class="mi">4</span><span class="o">));</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>슬라이싱 기능을 잘 활용하자</li>
+  <li>java 3항 연산자</li>
+  <li>replace 메소드</li>
+  <li><a href="https://slipp.net/questions/271#answer-1049">StringBuffer</a> 클래스 (String클래스와 달리 동적 문자열을 처리하는 클래스)</li>
+  <li>toString 메소드</li>
+</ul>
+:ET

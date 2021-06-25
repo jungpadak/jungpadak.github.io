@@ -1,0 +1,44 @@
+I"�<h1 id="level-1-자릿수더하기">level 1. 자릿수더하기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/121">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>sum_digit함수는 자연수를 전달 받아서 숫자의 각 자릿수의 합을 구해서 return합니다.
+예를들어 number = 123이면 1 + 2 + 3 = 6을 return하면 됩니다.
+sum_digit함수를 완성해보세요.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 풀이1
+</span><span class="k">def</span> <span class="nf">sum_digit</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+	<span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+		<span class="n">result</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># 풀이2
+</span><span class="k">def</span> <span class="nf">sum_digit</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+  <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">"결과 : {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">sum_digit</span><span class="p">(</span><span class="mi">123</span><span class="p">)));</span>
+
+
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sum_digit</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)])</span>
+
+<span class="c1"># map 활용
+</span><span class="k">def</span> <span class="nf">sum_digit</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>for in 반복문은 iterable한 오브젝트만 대상으로 할 수 있다.</li>
+  <li>int()를 통해서 string을 정수로 변환한다.</li>
+</ul>
+:ET

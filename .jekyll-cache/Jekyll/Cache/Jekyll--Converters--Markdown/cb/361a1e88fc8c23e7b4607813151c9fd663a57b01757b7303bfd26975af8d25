@@ -1,0 +1,47 @@
+I"�<h1 id="level-1-삼각형-출력하기">level 1. 삼각형 출력하기</h1>
+<blockquote>
+  <p>출처 : http://tryhelloworld.co.kr/challenge_codes/101</p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>printTriangle 메소드는 양의 정수 num을 매개변수로 입력받습니다.
+다음을 참고해 *(별)로 높이가 num인 삼각형을 문자열로 리턴하는 printTriangle 메소드를 완성하세요
+printTriangle이 return하는 String은 개행문자(‘\n’)로 끝나야 합니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>높이가 3일때
+
+*
+**
+***
+</code></pre></div></div>
+
+<h2 id="풀이">풀이</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">printTriangle</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="dl">''</span>
+  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">num</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+  	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;=</span> <span class="nx">i</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">){</span>
+    	<span class="nx">result</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">*</span><span class="dl">'</span>
+    <span class="p">}</span>
+    <span class="nx">result</span> <span class="o">+=</span> <span class="dl">'</span><span class="se">\n</span><span class="dl">'</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">printTriangle</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="dl">''</span>
+  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="nx">num</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">;)</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">*</span><span class="dl">'</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="nx">num</span><span class="o">-</span><span class="nx">i</span><span class="p">)</span> <span class="o">+</span> <span class="dl">'</span><span class="se">\n</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/repeat">str.repeat(count)</a> : 특정 스트링을 count 만큼 반복하여 리턴</li>
+</ul>
+:ET

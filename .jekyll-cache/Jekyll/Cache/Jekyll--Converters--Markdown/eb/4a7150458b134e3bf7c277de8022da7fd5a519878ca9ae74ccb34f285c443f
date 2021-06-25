@@ -1,0 +1,65 @@
+I"�<h1 id="level-1-정수제곱근판별하기">level 1. 정수제곱근판별하기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/121">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>nextSqaure함수는 정수 n을 매개변수로 입력받습니다.
+n이 임의의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 임의의 정수 x의 제곱이 아니라면 ‘no’을 리턴하는 함수를 완성하세요.
+예를들어 n이 121이라면 이는 정수 11의 제곱이므로 (11+1)의 제곱인 144를 리턴하고, 3이라면 ‘no’을 리턴하면 됩니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 풀이 1
+</span><span class="kn">import</span> <span class="nn">math</span>
+<span class="k">def</span> <span class="nf">nextSqure</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">pow</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">==</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">else</span> <span class="s">'no'</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">"결과 : {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">nextSqure</span><span class="p">(</span><span class="mi">121</span><span class="p">)));</span>
+
+<span class="c1"># 풀이 2
+</span><span class="k">def</span> <span class="nf">nextSqure</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">'no'</span>
+
+<span class="c1"># 풀이 3
+</span><span class="k">def</span> <span class="nf">nextSqure</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="k">if</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span><span class="o">==</span><span class="n">n</span> <span class="k">else</span> <span class="s">'no'</span>
+
+<span class="c1"># 참고 - 제곱근을 구하는 여러가지 방법
+# n ** 5
+# pow(n, 0.5)
+# math.sqrt(n)
+</span></code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">nextSqure</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">sqrt</span> <span class="o">=</span> <span class="n">n</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sqrt</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">sqrt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="s">'no'</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">nextSqure</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">sqrt</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">pow</span><span class="p">(</span><span class="n">sqrt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="n">sqrt</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">sqrt</span><span class="p">)</span> <span class="k">else</span> <span class="s">'no'</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">"결과 : {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">nextSqure</span><span class="p">(</span><span class="mi">121</span><span class="p">)));</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>파이썬 삼항 연산자 (conditional expressions)을 활용하니 짧게 코드를 짤 수 있었다.</li>
+  <li>제곱근을 구하려면 <code class="highlighter-rouge">import math</code> 를 통해서 모듈을 임포트하고 <code class="highlighter-rouge">math.sqrt()</code> 함수를 통해서 제곱근을 구할 수 있다.</li>
+  <li>int() 를 통해서 주어진 인수를 정수로 변환할 수 있다.</li>
+  <li><code class="highlighter-rouge">pow(4,2)</code>과 <code class="highlighter-rouge">4 ** 2</code> (=16) 을 통해서 제곱 연산을 할 수 있다.</li>
+  <li>반대로 <code class="highlighter-rouge">pow(4,0.5)</code>과 <code class="highlighter-rouge">4 ** 1/2</code> (=2) 을 통해서 제곱근을 구할 수 있다.</li>
+</ul>
+:ET

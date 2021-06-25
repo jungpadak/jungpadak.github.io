@@ -1,0 +1,32 @@
+I"�<h1 id="level-1-약수의-합">level 1. 약수의 합</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/2">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>어떤 수를 입력받아 그 수의 약수를 모두 더한 수 sumDivisor 함수를 완성해 보세요. 예를 들어 12가 입력된다면 12의 약수는 [1, 2, 3, 4, 6, 12]가 되고, 총 합은 28이 되므로 28을 반환해 주면 됩니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sumDivisor</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="n">divisors</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span><span class="p">]</span>
+    <span class="n">t_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">t_num</span> <span class="o">&gt;=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="n">t_num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">divisors</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">t_num</span><span class="p">)</span>
+        <span class="n">t_num</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">divisors</span><span class="p">)</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">sumDivisor</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sumDivisor</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">num</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">num</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>sum() 함수를 통해 배열의 모든 요소를 더할 수 있다.</li>
+</ul>
+:ET

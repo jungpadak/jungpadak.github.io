@@ -1,0 +1,76 @@
+I"�<blockquote>
+  <p><a href="https://opentutorials.org/course/195">생활코딩 - MySQL </a></p>
+</blockquote>
+
+<h1 id="mysql-client-종류">mysql client 종류</h1>
+<p>mysql-monitor</p>
+<ul>
+  <li>mysql을 설치하면 기본적으로 설치되는 프로그램</li>
+  <li>mysql -u아이디 -p비밀번호</li>
+  <li><a href="http://dev.mysql.com/downloads/gui-tools/5.0.html">mysql query browser</a>
+    <ul>
+      <li>GUI 환경 제공</li>
+    </ul>
+  </li>
+  <li><a href="http://www.phpmyadmin.net/home_page/index.php">phpMyAdmin</a>
+    <ul>
+      <li>서버에 직접 설치하는 웹프로그램으로, 웹으로 제공되는 서비스이기 때문에 어디서든지 웹환경에서 DB를 제어할 수 있다.</li>
+    </ul>
+  </li>
+  <li>navicat
+    <ul>
+      <li>기능이 많고 안정적이다. 유료</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="mysql-monitor-사용법">mysql monitor 사용법</h1>
+
+<h2 id="mysql-monitor">mysql monitor</h2>
+<ul>
+  <li>mysql 서버의 번들로 제공되는 기본 프로그램 (mysql client)</li>
+  <li>명령어 기반</li>
+  <li>mysql 관련된 거의 모든 기능을 사용할 수 있고, mysql이 있는 곳에 함께 기본으로 설치되어 있다.</li>
+</ul>
+
+<h2 id="사용법">사용법</h2>
+<ul>
+  <li>mysql -u아이디 -p비밀번호</li>
+  <li>mysql -h호스트주소 -p포트번호 -u아이디 -p비밀번호</li>
+</ul>
+
+<h2 id="데이터베이스-생성-및-조회">데이터베이스 생성 및 조회</h2>
+
+<p>mysql &gt; <code class="highlighter-rouge">CREATE DATABASE</code> music <code class="highlighter-rouge">CHARACTER SET</code> utf8 <code class="highlighter-rouge">COLLATE</code> utf8_general_ci;
+mysql &gt; show databases</p>
+
+<h2 id="데이터베이스-선택">데이터베이스 선택</h2>
+
+<p>mysql &gt; <code class="highlighter-rouge">use</code> music</p>
+
+<h2 id="테이블-생성-및-조회">테이블 생성 및 조회</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE TABLE <span class="sb">`</span>favorite_music<span class="sb">`</span> <span class="o">(</span>
+  <span class="sb">`</span>title<span class="sb">`</span> varchar<span class="o">(</span>255<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>musician<span class="sb">`</span> varchar<span class="o">(</span>20<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>duration<span class="sb">`</span> varchar<span class="o">(</span>20<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>album<span class="sb">`</span> varchar<span class="o">(</span>30<span class="o">)</span> NOT NULL
+<span class="o">)</span> <span class="nv">ENGINE</span><span class="o">=</span>innodb<span class="p">;</span>
+</code></pre></div></div>
+
+<p>mysql&gt; <code class="highlighter-rouge">show tables;</code></p>
+
+<h2 id="테이블에-데이터-추가">테이블에 데이터 추가</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>insert into favorite_music <span class="o">(</span><span class="sb">`</span>title<span class="sb">`</span>,<span class="sb">`</span>musician<span class="sb">`</span>, <span class="sb">`</span>duration<span class="sb">`</span>, <span class="sb">`</span>album<span class="sb">`</span><span class="o">)</span> values<span class="o">(</span><span class="s1">'Chasing Pavements'</span>, <span class="s1">'아델'</span>, <span class="s1">'3:30'</span>, 19<span class="o">)</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<h2 id="입력된-데이터-조회">입력된 데이터 조회</h2>
+
+<p><code class="highlighter-rouge">select</code> * <code class="highlighter-rouge">from</code> favorite_music;</p>
+
+<h2 id="종료">종료</h2>
+
+<p>mysql&gt; <code class="highlighter-rouge">exit;</code></p>
+:ET

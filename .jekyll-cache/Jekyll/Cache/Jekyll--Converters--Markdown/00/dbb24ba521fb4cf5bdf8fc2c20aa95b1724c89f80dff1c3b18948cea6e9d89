@@ -1,0 +1,48 @@
+I"	<h1 id="level-1-최대공약수와-최소공배수---gcd">level 1. 최대공약수와 최소공배수 - gcd</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/11">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>두 수를 입력받아 두 수의 최대공약수와 최소공배수를 반환해주는 gcdlcm 함수를 완성해 보세요. 배열의 맨 앞에 최대공약수, 그 다음 최소공배수를 넣어 반환하면 됩니다. 예를 들어 gcdlcm(3,12) 가 입력되면, [3, 12]를 반환해주면 됩니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<h3 id="1">1</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">fractions</span> <span class="kn">import</span> <span class="n">gcd</span>
+<span class="k">def</span> <span class="nf">gcdlcm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">/</span><span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)]</span>
+
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">gcdlcm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+</code></pre></div></div>
+<h3 id="2-참고">2 (<a href="https://pignuante.github.io/2017-06-02/tryHelloWorld-3/">참고</a>)</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">gcdlcm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">big</span><span class="p">,</span> <span class="n">small</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">small</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">big</span><span class="p">,</span> <span class="n">small</span> <span class="o">=</span> <span class="n">small</span><span class="p">,</span> <span class="n">big</span> <span class="o">%</span> <span class="n">small</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">big</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="n">big</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">gcdlcm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">c</span> <span class="o">%</span> <span class="n">d</span>
+        <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">,</span> <span class="n">t</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">/</span><span class="n">c</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">answer</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">gcdlcm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li><code class="highlighter-rouge">from fractions import gcd</code> 모듈을 통해 최대공약수(Greatest Common Divisor) 를 구하는 함수 gcd()를 사용할 수 있다.</li>
+  <li>a,b의 최소공배수는 a*b/최대공약수 를 통해서 구할 수 있다.</li>
+</ul>
+:ET

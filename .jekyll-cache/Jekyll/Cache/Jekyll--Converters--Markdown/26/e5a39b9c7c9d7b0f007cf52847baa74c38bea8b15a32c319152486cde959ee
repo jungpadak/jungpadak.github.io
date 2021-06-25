@@ -1,0 +1,65 @@
+I"(<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/82">문제출처</a></p>
+</blockquote>
+
+<hr />
+
+<h2 id="문제">문제</h2>
+<blockquote>
+  <p>getMiddle메소드는 하나의 단어를 입력 받습니다.     <br />
+단어를 입력 받아서 가운데 글자를 반환하도록 getMiddle메소드를 만들어 보세요. 단어의 길이가 짝수일경우 가운데 두글자를 반환하면 됩니다.   <br />
+예를들어 입력받은 단어가 power이라면 w를 반환하면 되고, 입력받은 단어가 test라면 es를 반환하면 됩니다.</p>
+</blockquote>
+
+<h2 id="풀이코드">풀이코드</h2>
+<ul>
+  <li>인자로 주어진 stirng의 길이를 구하여, .length()</li>
+  <li>홀수인 경우 문자열.charAt(위치)를 활용하여 가운데 글자를 char 자료형으로 가져온다.
+    <ul>
+      <li>이 경우 함수의 리턴 자료형이 String 이기 때문에 오류가 발생한다.</li>
+      <li>char -&gt; String 으로 변환하는 가장 효율적인 방법은 Character.toString(대상) 이다.</li>
+    </ul>
+  </li>
+  <li>짝수인 경우 문자열.substring(시작, 끝)으로 가운데 글자들을 String 자료형으로 가져올 수 있다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">StringExercise</span><span class="o">{</span>
+    <span class="nc">String</span> <span class="nf">getMiddle</span><span class="o">(</span><span class="nc">String</span> <span class="n">word</span><span class="o">){</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">len</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+      <span class="c1">// return word.charAt(len/2)+"";</span>
+      <span class="c1">// char &gt; Stirng 형변환</span>
+      <span class="c1">// Least efficient and most memory-inefficient, but common amongst beginners because of its simplicity</span>
+      <span class="k">return</span> <span class="nc">Character</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">word</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">len</span><span class="o">/</span><span class="mi">2</span><span class="o">));</span> <span class="c1">//  Most efficient way</span>
+    <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+      <span class="k">return</span> <span class="n">word</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">len</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">len</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>        
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="c1">// 아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span>  <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="nc">StringExercise</span> <span class="n">se</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringExercise</span><span class="o">();</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">se</span><span class="o">.</span><span class="na">getMiddle</span><span class="o">(</span><span class="s">"power"</span><span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-코드">다른사람 코드</h2>
+<ul>
+  <li>.substring() 메소드를 활용하면 Stirng 으로 리턴값을 받을 수 있다.</li>
+  <li>3항 연산자를 활용한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">StringExercise</span><span class="o">{</span>
+    <span class="nc">String</span> <span class="nf">getMiddle</span><span class="o">(</span><span class="nc">String</span> <span class="n">word</span><span class="o">){</span>
+      <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+      <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+      <span class="k">return</span> <span class="o">(</span><span class="n">length</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">word</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span> <span class="o">:</span> <span class="n">word</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">index</span><span class="o">,</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// 아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span>  <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+      <span class="nc">StringExercise</span> <span class="n">se</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringExercise</span><span class="o">();</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">se</span><span class="o">.</span><span class="na">getMiddle</span><span class="o">(</span><span class="s">"power"</span><span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+:ET

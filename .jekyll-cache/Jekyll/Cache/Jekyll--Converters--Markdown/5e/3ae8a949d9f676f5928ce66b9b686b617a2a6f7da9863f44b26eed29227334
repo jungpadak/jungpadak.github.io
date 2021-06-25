@@ -1,0 +1,68 @@
+I"�<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/20">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>numberOfPrime 메소드는 정수 n을 매개변수로 입력받습니다.</p>
+
+<p>1부터 입력받은 숫자 n 사이에 있는 소수의 개수를 반환하도록 numberOfPrime 메소드를 만들어 보세요.</p>
+
+<p>소수는 1과 자기 자신으로만 나누어지는 수를 의미합니다.
+(1은 소수가 아닙니다.)</p>
+
+<p>10을 입력받았다면, 1부터 10 사이의 소수는 [2,3,5,7] 4개가 존재하므로 4를 반환
+5를 입력받았다면, 1부터 5 사이의 소수는 [2,3,5] 3개가 존재하므로 3를 반환</p>
+
+<h2 id="풀이">풀이</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">numberOfPrime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">num_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">prime_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">num_list</span><span class="p">:</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">check</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">check</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">prime_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">prime_list</span><span class="p">)</span>
+
+
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">numberOfPrime</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="풀이-과정">풀이 과정</h2>
+<ul>
+  <li>1부터 n 사이의 숫자를 리스트로 만든다. (list, range 함수)</li>
+  <li>리스트의 각 요소를 돌면서 (반복문) 소수인지 확인한다.</li>
+  <li>어떻게 소수인지 확인하지?
+    <ul>
+      <li>소수는 1부터 자신까지의 수로 나누어 나머지가 0인 수가 2개만 존재한다. (range, 반복문)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># 소수인지 판단
+</span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">all</span><span class="p">([(</span><span class="n">n</span><span class="o">%</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span> <span class="ow">and</span> <span class="n">n</span><span class="o">&gt;</span><span class="mi">1</span> <span class="c1"># bool 값 리턴
+</span>
+<span class="c1"># 소수의 갯수 리턴
+</span><span class="k">def</span> <span class="nf">numberOfPrime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">is_prime</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)].</span><span class="n">count</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  
+  <span class="c1"># return len(list(filter(is_prime, range(1, n+1))))
+</span>
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">numberOfPrime</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>all() 내장함수 : all(x)은 반복 가능한(iterable) 자료형 x를 입력 인수로 받으며, 이 x가 모두 참이면 True, 거짓이 하나라도 있으면 False를 리턴한다.</li>
+  <li>(※ 반복 가능한 자료형이란 for문으로 그 값을 출력할 수 있는 것을 의미한다. 리스트, 튜플, 문자열, 딕셔너리, 집합 등이 있다.)</li>
+  <li>.count(x) : 리스트, 문자열, 튜플 등 iterable 자료형 안의 x 요소의 갯수를 리턴한다.</li>
+</ul>
+:ET

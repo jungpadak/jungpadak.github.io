@@ -1,0 +1,73 @@
+I"�<blockquote>
+  <p><a href="https://www.hackerrank.com/challenges/nested-list/problem">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Given the names and grades for each student in a Physics class of  students, store them in a nested list and print the name(s) of any student(s) having the second lowest grade.
+
+Note: If there are multiple students with the same grade, order their names alphabetically and print each name on a new line.
+
+Input Format
+
+The first line contains an integer, , the number of students.
+The  subsequent lines describe each student over  lines; the first line contains a student's name, and the second line contains their grade.
+
+Constraints
+
+There will always be one or more students having the second lowest grade.
+Output Format
+
+Print the name(s) of any student(s) having the second lowest grade in Physics; if there are multiple students, order their names alphabetically and print each one on a new line.
+
+Sample Input
+
+5
+Harry
+37.21
+Berry
+37.21
+Tina
+37.2
+Akriti
+41
+Harsh
+39
+Sample Output
+
+Berry
+Harry
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="풀이코드">풀이코드</h2>
+<ul>
+  <li>두번째로 작은 점수를 찾는다</li>
+  <li>해당 점수를 가진 사람 이름을 출력한다</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">score_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+    <span class="n">score_list</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">score</span><span class="p">])</span>
+<span class="n">second_highest</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">score</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">score_list</span><span class="p">]))[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">([</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">score_list</span> <span class="k">if</span> <span class="n">score</span> <span class="o">==</span> <span class="n">second_highest</span><span class="p">])))</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li><a href="https://docs.python.org/3/howto/sorting.html">python3 sorting how to</a></li>
+  <li>sorted() 함수는 key 인자를 받아서 정렬 기준을 재지정 가능하다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span><span class="p">,</span> <span class="n">attrgetter</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">student_tuples</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="p">[(</span><span class="s">'dave'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s">'jane'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="s">'john'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="mi">15</span><span class="p">)]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">student_objects</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">attrgetter</span><span class="p">(</span><span class="s">'age'</span><span class="p">))</span>
+<span class="p">[(</span><span class="s">'dave'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s">'jane'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="s">'john'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="mi">15</span><span class="p">)]</span>
+</code></pre></div></div>
+:ET

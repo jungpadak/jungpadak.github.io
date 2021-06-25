@@ -1,0 +1,67 @@
+I"f<blockquote>
+  <p><a href="https://www.hackerrank.com/challenges/finding-the-percentage/problem">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>You have a record of  students. Each record contains the student's name, and their percent marks in Maths, Physics and Chemistry. The marks can be floating values. The user enters some integer  followed by the names and marks for  students. You are required to save the record in a dictionary data type. The user then enters a student's name. Output the average percentage marks obtained by that student, correct to two decimal places.
+
+Input Format
+
+The first line contains the integer , the number of students. The next  lines contains the name and marks obtained by that student separated by a space. The final line contains the name of a particular student previously listed.
+
+Constraints
+
+Output Format
+
+Print one line: The average of the marks obtained by the particular student correct to 2 decimal places.
+
+Sample Input
+
+3
+Krishna 67 68 69
+Arjun 70 98 63
+Malika 52 56 60
+Malika
+Sample Output
+
+56.00
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="풀이코드">풀이코드</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">student_marks</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
+    <span class="n">student_marks</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores</span>
+<span class="n">query_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">score_list</span> <span class="o">=</span> <span class="n">student_marks</span><span class="p">[</span><span class="n">query_name</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"{0:.2f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">score_list</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">score_list</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>asterisk를 통한 가변인자 사용</li>
+  <li><a href="https://mingrammer.com/understanding-the-asterisk-of-python">파이썬의 Asterisk(*) 이해하기</a></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">one</span><span class="p">,</span> <span class="o">*</span><span class="n">others</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">one</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">others</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>“{0:.2f}”.format(e) 를 통해서 소수점 2자리 까지만 표시 가능</li>
+  <li><a href="https://docs.python.org/3/library/string.html#formatstrings">python3 string — Common string operations</a></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s">"{0:.2f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="mf">56.000</span><span class="p">))</span>
+<span class="mf">56.00</span>
+</code></pre></div></div>
+:ET

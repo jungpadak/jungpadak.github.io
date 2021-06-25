@@ -1,0 +1,106 @@
+I"�+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/125#">문제출처</a></p>
+</blockquote>
+
+<p>Java 공부를 시작하고 처음 풀어본 간단한 알고리즘 문제이다.  <br />
+<em>문자열을 배열로 만드려면 어떻게 하지? 오름차순 정렬은 어떻게 하지?</em>  <br />
+아직 모르는 것이 많지만 이렇게 하나씩 찾아가면서 익히는게 재미있기도 하고 기억에도 잘 남는 것 같다.</p>
+
+<p>파이썬을 처음 공부하고 알고리즘 문제를 풀기 시작했을 때가 생각난다.  <br />
+리스트 원소의 합을 구하는 sum() 함수를 찾아보고 메모해둔 글을 다시 읽었는데,<br />
+이렇게 간단한걸 모르던 때도 있었구나 싶었다. (옛날 같은데 그게 겨우 3개월 전이라니!)</p>
+
+<p>그래도 다행인건 간단한 문제라면 어떻게 접근해서 해결해야겠다는 그림이 그려진다는 것이다.<br />
+그다음에 해야 하는건 원하는 걸 구현하려면 Java의 무슨 메소드, 패키지를 사용해야 하는지 찾아보는 것<br />
+그리고 codility 덕분에 시간복잡도에 대한 고민을 한번 더 할 수 있게 된 것 같다.</p>
+
+<p>처음이라 약간 막막한 느낌이 들기는 하지만<br />
+이것도 금방 지나가겠지!</p>
+
+<h2 id="문제">문제</h2>
+<blockquote>
+  <p>getMinMaxString 메소드는 String형 변수 str을 매개변수로 입력받습니다.
+str에는 공백으로 구분된 숫자들이 저장되어 있습니다.
+str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 “(최소값) (최대값)”형태의 String을 반환하는 메소드를 완성하세요.
+예를들어 str이 “1 2 3 4”라면 “1 4”를 리턴하고, “-1 -2 -3 -4”라면 “-4 -1”을 리턴하면 됩니다.</p>
+</blockquote>
+
+<h2 id="풀이코드">풀이코드</h2>
+
+<h3 id="java">Java</h3>
+<p><strong>접근</strong></p>
+<ul>
+  <li>문자열을 배열로 변경한다. (.split() 메소드 활용)</li>
+  <li>배열의 각 요소를 정수로 변경하여 새로운 배열(arrayInt)에 담는다. (Integer.parseInt() 활용)</li>
+  <li>배열을 오름차순으로 정렬한다. (Arrays.sort() 활용)</li>
+  <li>맨 처음 요소(최소값) 맨 마지막 요소(최대값)을 문자열로 리턴한다.</li>
+</ul>
+
+<p><strong>고민</strong></p>
+<ul>
+  <li>sorting 을 하려면 최소 O(N LogN)의 시간복잡도가 발생한다.</li>
+  <li>차라리 배열을 순회하면서 최대값, 최소값을 찾는게 효율적일 것 같다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetMinMaxString2</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getMinMaxString</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">String</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span>
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">arrayInt</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arrayInt</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">arrayInt</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span> <span class="c1">// 배열의 각 요소를 정수로 변경</span>
+		<span class="o">}</span>
+
+		<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arrayInt</span><span class="o">);</span> <span class="c1">// 최소 O(N LogN)의 시간복잡도</span>
+		<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">arrayInt</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">arrayInt</span><span class="o">[</span><span class="n">arrayInt</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+
+		<span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"1 2 3 4"</span><span class="o">;</span>
+		<span class="nc">GetMinMaxString2</span> <span class="n">minMax</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GetMinMaxString2</span><span class="o">();</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"최소값과 최대값은?"</span> <span class="o">+</span> <span class="n">minMax</span><span class="o">.</span><span class="na">getMinMaxString</span><span class="o">(</span><span class="n">str</span><span class="o">));</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="python">Python</h3>
+<ul>
+  <li>min, max 함수를 사용해서 간단하게 구현 가능하다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">li</span> <span class="o">=</span> <span class="nb">str</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">print</span><span class="p">(</span><span class="s">"최소값과 최대값은"</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">li</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">li</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetMinMaxString</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getMinMaxString</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">String</span><span class="o">[]</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span>
+		<span class="kt">int</span> <span class="n">min</span><span class="o">,</span> <span class="n">max</span><span class="o">,</span> <span class="n">n</span><span class="o">;</span>
+		<span class="n">min</span> <span class="o">=</span> <span class="n">max</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">tmp</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tmp</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+			<span class="n">n</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">tmp</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">min</span> <span class="o">&gt;</span> <span class="n">n</span><span class="o">)</span> <span class="n">min</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">)</span> <span class="n">max</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+		<span class="o">}</span>
+
+		<span class="k">return</span> <span class="n">min</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">max</span><span class="o">;</span>
+
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"1 2 3 4"</span><span class="o">;</span>
+		<span class="nc">GetMinMaxString</span> <span class="n">minMax</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GetMinMaxString</span><span class="o">();</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"최대값과 최소값은?"</span> <span class="o">+</span> <span class="n">minMax</span><span class="o">.</span><span class="na">getMinMaxString</span><span class="o">(</span><span class="n">str</span><span class="o">));</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+:ET

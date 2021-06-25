@@ -1,0 +1,47 @@
+I"<h1 id="스트링을-숫자로-바꾸기">스트링을 숫자로 바꾸기</h1>
+<blockquote>
+  <p>경로 : http://tryhelloworld.co.kr/challenge_codes/110</p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<blockquote>
+  <p>strToInt 메소드는 String형 str을 매개변수로 받습니다.
+str을 숫자로 변환한 결과를 반환하도록 strToInt를 완성하세요.
+예를들어 str이 “1234”이면 1234를 반환하고, “-1234”이면 -1234를 반환하면 됩니다.
+str은 부호(+,-)와 숫자로만 구성되어 있고, 잘못된 값이 입력되는 경우는 없습니다.</p>
+</blockquote>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">strToInt</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="c1">//함수를 완성하세요</span>
+	<span class="nx">result</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c1">// 아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">strToInt</span><span class="p">(</span><span class="dl">"</span><span class="s2">-1234</span><span class="dl">"</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="풀이-java">풀이 (java)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StrToInt</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getStrToInt</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">//아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+        <span class="nc">StrToInt</span> <span class="n">strToInt</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StrToInt</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">strToInt</span><span class="o">.</span><span class="na">getStrToInt</span><span class="o">(</span><span class="s">"-1234"</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>java에서 String을 int로 변경할때 <code class="highlighter-rouge">Integer.parseInt()</code> 를 사용한다. ( primitive int 리턴)</li>
+  <li><code class="highlighter-rouge">Integer.valueOf()</code> 사용시 Integer 객체를 리턴한다.</li>
+  <li>“10A” 와 같은 문자열이 포함된 경우 <code class="highlighter-rouge">NumberFormatException</code> 이 발생한다.</li>
+</ul>
+:ET

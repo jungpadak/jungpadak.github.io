@@ -1,0 +1,62 @@
+I"�<blockquote>
+  <p><a href="https://opentutorials.org/course/195">생활코딩 - MySQL </a></p>
+</blockquote>
+
+<h1 id="그룹핑-group-by">그룹핑 (group by)</h1>
+<ul>
+  <li>특정 칼럼을 기준으로 데이터를 그룹핑한다.</li>
+  <li>그룹이라고 하는 것은 여러개의 데이터가 어떻게 구성되어 있는지 원자화 시키는 것이다.</li>
+  <li>각각의 그룹핑된 컬럼을 기준으로 특정한 다른 컬럼의 합계, 평균 등의 작업도 가능하다.</li>
+</ul>
+
+<h2 id="문법">문법</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT <span class="k">*</span> FROM 테이블명 GROUP BY 그룹핑 할 기준 칼럼명
+</code></pre></div></div>
+
+<h2 id="예제">예제</h2>
+<h3 id="대상-테이블">대상 테이블</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DROP TABLE IF EXISTS <span class="sb">`</span>student<span class="sb">`</span><span class="p">;</span>
+CREATE TABLE <span class="sb">`</span>student<span class="sb">`</span> <span class="o">(</span>
+  <span class="sb">`</span><span class="nb">id</span><span class="sb">`</span> tinyint<span class="o">(</span>4<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>name<span class="sb">`</span> char<span class="o">(</span>4<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>sex<span class="sb">`</span> enum<span class="o">(</span><span class="s1">'남자'</span>,<span class="s1">'여자'</span><span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>address<span class="sb">`</span> varchar<span class="o">(</span>50<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>distance<span class="sb">`</span> INT NOT NULL,
+  <span class="sb">`</span>birthday<span class="sb">`</span> datetime NOT NULL,
+  PRIMARY KEY <span class="o">(</span><span class="sb">`</span><span class="nb">id</span><span class="sb">`</span><span class="o">)</span>
+<span class="o">)</span> <span class="nv">ENGINE</span><span class="o">=</span>InnoDB DEFAULT <span class="nv">CHARSET</span><span class="o">=</span>utf8<span class="p">;</span>
+
+
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>2, <span class="s1">'박재숙'</span>, <span class="s1">'남자'</span>, <span class="s1">'서울'</span>,  10, <span class="s1">'1985-10-26 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>1, <span class="s1">'이숙경'</span>, <span class="s1">'여자'</span>, <span class="s1">'청주'</span>, 200, <span class="s1">'1982-11-16 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>3, <span class="s1">'백태호'</span>, <span class="s1">'남자'</span>, <span class="s1">'경주'</span>, 350, <span class="s1">'1989-2-10 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>4, <span class="s1">'김경훈'</span>, <span class="s1">'남자'</span>, <span class="s1">'제천'</span>, 190, <span class="s1">'1979-11-4 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>8, <span class="s1">'김정인'</span>, <span class="s1">'남자'</span>, <span class="s1">'대전'</span>, 200, <span class="s1">'1990-10-1 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>6, <span class="s1">'김경진'</span>, <span class="s1">'여자'</span>, <span class="s1">'제주'</span>, 400, <span class="s1">'1985-1-1 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>7, <span class="s1">'박경호'</span>, <span class="s1">'남자'</span>, <span class="s1">'영동'</span>, 310, <span class="s1">'1981-2-3 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="그룹핑-group-by-예시">그룹핑 group by 예시</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select </span>sex from student group by sex<span class="p">;</span>
+<span class="c"># 결과값</span>
++--------+
+| sex    |
++--------+
+| 남자    |
+| 여자    |
++--------+
+
+<span class="k">select </span>sex,sum<span class="o">(</span>distance<span class="o">)</span>, avg<span class="o">(</span>distance<span class="o">)</span> from student group by sex<span class="p">;</span>
+<span class="c"># 결과값</span>
++--------+---------------+---------------+
+| sex    | <span class="nb">sum</span><span class="o">(</span>distance<span class="o">)</span> | avg<span class="o">(</span>distance<span class="o">)</span> |
++--------+---------------+---------------+
+| 남자    |          1060 |      212.0000 |
+| 여자    |           600 |      300.0000 |
++--------+---------------+---------------+
+
+</code></pre></div></div>
+:ET

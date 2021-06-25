@@ -1,0 +1,25 @@
+I"a	<h1 id="level-2-요일-구하기">level 2. 요일 구하기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/177">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>2016년 1월 1일은 금요일입니다. 2016년 A월 B일은 무슨 요일일까요? 두 수 A,B를 입력받아 A월 B일이 무슨 요일인지 출력하는 getDayName 함수를 완성하세요. 요일의 이름은 일요일부터 토요일까지 각각</p>
+
+<p>SUN,MON,TUE,WED,THU,FRI,SAT</p>
+
+<p>를 출력해주면 됩니다. 예를 들어 A=5, B=24가 입력된다면 5월 24일은 화요일이므로 TUE를 반환하면 됩니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="k">def</span> <span class="nf">getDayName</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+	<span class="k">return</span> <span class="p">[</span><span class="s">'MON'</span><span class="p">,</span><span class="s">'TUE'</span><span class="p">,</span><span class="s">'WED'</span><span class="p">,</span><span class="s">'THU'</span><span class="p">,</span><span class="s">'FRI'</span><span class="p">,</span><span class="s">'SAT'</span><span class="p">,</span><span class="s">'SUN'</span><span class="p">][</span><span class="n">datetime</span><span class="p">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">).</span><span class="n">weekday</span><span class="p">()]</span>
+<span class="c1">#아래 코드는 테스트를 위한 출력 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">getDayName</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">24</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li><code class="highlighter-rouge">datetime</code> 모듈의 weekday() 메소드를 통해서 특정일의 요일을 구할 수 있다. <a href="https://docs.python.org/3.5/library/datetime.html?highlight=weekday#datetime.date.weekday">가이드문서</a></li>
+</ul>
+:ET

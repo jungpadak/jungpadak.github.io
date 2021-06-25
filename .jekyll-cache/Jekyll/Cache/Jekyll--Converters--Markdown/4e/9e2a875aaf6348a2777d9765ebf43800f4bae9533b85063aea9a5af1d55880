@@ -1,0 +1,105 @@
+I"�7<h1 id="level-1-행렬의-덧셈">level 1. 행렬의 덧셈</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/9">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<p>행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행,같은 열의 값을 서로 더한 결과가 됩니다.
+2개의 행렬을 입력받는 sumMatrix 함수를 완성하여 행렬 덧셈의 결과를 반환해 주세요.</p>
+
+<p>예를 들어 2x2 행렬인 A = ((1, 2), (2, 3)), B = ((3, 4), (5, 6)) 가 주어지면,
+같은 2x2 행렬인 ((4, 6), (7, 9))를 반환하면 됩니다.
+(어떠한 행렬에도 대응하는 함수를 완성해주세요.)</p>
+
+<h2 id="느낀-점">느낀 점</h2>
+<h3 id="자바스크립트">자바스크립트</h3>
+<ul>
+  <li>2차원 배열을 만드는 것이 어려웠다. (<code class="highlighter-rouge">answer[i] = []</code> 으로 빈 배열 속 배열을 만든다)</li>
+  <li>.map() 메소드를 잘 활용하자. <a href="https://wayhome25.github.io/javascript/2017/02/17/js-method/">참고</a></li>
+  <li>화살표 함수에 익숙해지자.<a href="https://wayhome25.github.io/javascript/2017/02/23/js-Arrow-functions/">참고</a></li>
+</ul>
+
+<h3 id="파이썬">파이썬</h3>
+<ul>
+  <li><code class="highlighter-rouge">list comprehension</code>을 활용하면 원하는 리스트 만들기가 정말 편하다.</li>
+  <li><code class="highlighter-rouge">zip</code>을 활용해서 2개 이상의 리스트를 활용해서 원하는 리스트를 만들 수 있다.</li>
+  <li>2차원 리스트를 만드는 것이 어려웠다.  <br />
+  (<code class="highlighter-rouge">answer = [[] for j in range(len(A))]</code> 으로 리스트 A 길이만큼의 2차원 리스트를 만든다.)</li>
+  <li>리스트의의 길이만큼 반복하려면 <code class="highlighter-rouge">for j in range(len(A))</code> 를 사용한다.</li>
+  <li>빈 2차원 리스트에 값을 넣으려면 <code class="highlighter-rouge">a[0].append(1)</code>를 사용한다. (<code class="highlighter-rouge">a[0][0] = 1</code>는 IndexError 발생)</li>
+</ul>
+
+<h2 id="풀이-python-javascript">풀이 (python, Javascript)</h2>
+
+<h3 id="python---풀이-1">python - 풀이 1</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sumMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[[</span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)]</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">answer</span>
+
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">sumMatrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]))</span>
+</code></pre></div></div>
+
+<h3 id="python---풀이-2">python - 풀이 2</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sumMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))]</span>  
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])):</span>
+            <span class="n">answer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">x</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">answer</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">sumMatrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]))</span>
+</code></pre></div></div>
+
+<h3 id="javascript">Javascript</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sumMatrix</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span><span class="nx">B</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">();</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">A</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="nx">answer</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+			<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">A</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">){</span>
+				<span class="nx">answer</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="nx">A</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">+</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">];</span>				
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sumMatrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]))</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<h3 id="python">python</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sumMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[[</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]))]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))]</span>
+
+    <span class="k">return</span> <span class="n">answer</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="n">sumMatrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]))</span>
+</code></pre></div></div>
+
+<h3 id="javascript-1">Javascript</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sumMatrix</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span><span class="nx">B</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">b</span><span class="p">,</span> <span class="nx">j</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]));</span>
+<span class="p">}</span>
+
+<span class="c1">// 아래는 테스트로 출력해 보기 위한 코드입니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sumMatrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]))</span>
+
+<span class="c1">// 화살표 함수를 풀어 쓴 코드</span>
+<span class="kd">function</span> <span class="nx">sumMatrix</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span><span class="nx">B</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">i</span><span class="p">){</span>
+             <span class="k">return</span> <span class="nx">a</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">j</span><span class="p">){</span>
+                     <span class="k">return</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span>
+                   <span class="p">})</span>
+         <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

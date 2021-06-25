@@ -1,0 +1,27 @@
+I"_<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/26">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>야근 지수
+회사원인 수민이는 많은 일이 쌓여 있습니다. 수민이는 야근을 최소화하기 위해 남은 일의 작업량을 숫자로 메기고, 일에 대한 야근 지수를 줄이기로 결정했습니다. 야근 지수는 남은 일의 작업량을 제곱하여 더한 값을 의미합니다. 수민이는 1시간 동안 남은 일 중 하나를 골라 작업량 1만큼 처리할 수 있습니다. 수민이의 퇴근까지 남은 N 시간과 각 일에 대한 작업량이 있을 때, noOvertime 함수를 제작하여 수민이의 야근 지수를 최소화 한 결과를 출력해 주세요. 예를 들어, N=4 일 때, 남은 일의 작업량이 [4, 3, 3] 이라면 야근 지수를 최소화하기 위해 일을 한 결과는 [2, 2, 2]가 되고 야근 지수는 22 + 22 + 22 = 12가 되어 12를 반환해 줍니다.</p>
+
+<h2 id="풀이">풀이</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">noOvertime</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">works</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">works</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">works</span><span class="p">[</span><span class="n">works</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">works</span><span class="p">))]</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">works</span><span class="p">])</span>
+    <span class="c1"># 야근 지수를 최소화 하였을 때의 야근 지수는 몇일까요?
+</span>    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>map 함수를 사용하지 않고도 리스트의 각 값에 연산을 수행할 수 있다.</li>
+  <li>index(x) 함수는 리스트에 x라는 값이 있으면 x의 위치값을 리턴한다. 값이 없으면 ValueError가 발생한다.</li>
+</ul>
+:ET

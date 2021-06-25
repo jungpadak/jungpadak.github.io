@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      codility - BinaryGap (시간복잡도 평가 추가) &middot; JungPadak 블로그
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="../public/SJ.PNG" title="View on Gravatar" alt="View on Gravatar" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>창업가 되기 위한 재료모으기</strong> learning to be a giant.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me: 
+        
+        
+        
+        <a href="https://www.linkedin.com/in/seung-joon-jung">
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="https://github.com/junapdak">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:junapossible@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/">
+          Categories
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/#til">
+                TIL (Today I Learned)
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/#javascript">
+                javascript
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      2021 @jungpadak 
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home" title="JungPadak 블로그">
+              <img class="masthead-logo" src="/public/dolphin.png"/>
+            </a>
+            <small><a href="http://jungpadak.github.io/"">JungPadak 블로그<a></small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">codility - BinaryGap (시간복잡도 평가 추가)</h1>
+  <span class="post-date">24 Apr 2017</span>
+   | 
+  
+    <a href="/blog/tags/#알고리즘" class="post-tag">알고리즘</a>
+  
+    <a href="/blog/tags/#프로그래밍" class="post-tag">프로그래밍</a>
+  
+  
+  <article>
+    <blockquote>
+  <p><a href="https://codility.com/programmers/lessons/1-iterations/">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<p>A binary gap within a positive integer N is any maximal sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N.</p>
+
+<p>For example, number 9 has binary representation 1001 and contains a binary gap of length 2. The number 529 has binary representation 1000010001 and contains two binary gaps: one of length 4 and one of length 3. The number 20 has binary representation 10100 and contains one binary gap of length 1. The number 15 has binary representation 1111 and has no binary gaps.</p>
+
+<p>Write a function:</p>
+
+<p>def solution(N)</p>
+
+<p>**that, given a positive integer N, returns the length of its longest binary gap. The function should return 0 if N doesn’t contain a binary gap.</p>
+
+<p>For example, given N = 1041 the function should return 5, because N has binary representation 10000010001 and so its longest binary gap is of length 5.**</p>
+
+<p>Assume that:</p>
+
+<p>N is an integer within the range [1..2,147,483,647].</p>
+
+<p>Complexity:</p>
+
+<p>**expected worst-case time complexity is O(log(N));</p>
+
+<p>expected worst-case space complexity is O(1).**</p>
+
+<h2 id="풀이과정">풀이과정</h2>
+<ul>
+  <li>함수의 인자로 받은 N을 2진수로 바꾼다</li>
+  <li>2진수 N의 각 자릿수 중에 1에 해당하는 자릿수의 인덱스 값을 찾아 빈 배열에 담는다.</li>
+  <li>배열에 담긴 요소를 인접한 요소와 뺀 결과를 새로운 빈 배열에 담는다.</li>
+  <li>그중에서 최댓값을 리턴한다.</li>
+</ul>
+
+<h2 id="풀이코드">풀이코드</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">N</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># 함수의 인자로 받은 N을 2진수로 바꾼다, format(N, 'b') 도 가능
+</span>    <span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s">'1'</span><span class="p">:</span>
+            <span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="c1"># 2진수 N의 각 자릿수 중에 1에 해당하는 자릿수의 인덱스 값을 찾아 빈 배열에 담는다.
+</span>
+    <span class="n">arr2</span> <span class="o">=</span> <span class="p">[]</span>    
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">arr2</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># 배열에 담긴 요소를 인접한 요소와 뺀 결과를 새로운 빈 배열에 담는다.
+</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span> <span class="c1"># 그 중에서 최댓값을 리턴한다.
+</span></code></pre></div></div>
+
+<h3 id="big-o">Big-O</h3>
+<ul>
+  <li>(1) ~ (9)를 더하면 <code class="highlighter-rouge">5N + 4</code> Big-O 로 표현하면 O(N)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">N</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># (1) Big-O : constant 1
+</span>    <span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># (2) Big-O: constant 1
+</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">N</span><span class="p">):</span> <span class="c1"># (3) Big-O: N
+</span>        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s">'1'</span><span class="p">:</span> <span class="c1"># (4) Big-O: N
+</span>            <span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="c1"># (5) Big-O: N
+</span>
+    <span class="n">arr2</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># (6) Big-O: constant 1    
+</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># (7) Big-O : N
+</span>        <span class="n">arr2</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># (8) Big-O: N
+</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span> <span class="c1"># (9) Big-O: constant 1
+</span></code></pre></div></div>
+
+<h2 id="다른-사람-코드">다른 사람 코드</h2>
+<ul>
+  <li>Big-O : O(N)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#1
+</span><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+  <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="n">N</span><span class="p">)[</span><span class="mi">2</span><span class="p">:].</span><span class="n">strip</span><span class="p">(</span><span class="s">'0'</span><span class="p">).</span><span class="n">strip</span><span class="p">(</span><span class="s">'1'</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">'1'</span><span class="p">)))</span> <span class="c1"># Big-O : N
+</span>
+<span class="c1">#2
+</span><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+  <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">format</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s">'b'</span><span class="p">).</span><span class="n">strip</span><span class="p">(</span><span class="s">'0'</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">'1'</span><span class="p">)))</span> <span class="c1"># Big-O : N  
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="strip--split">.strip() / .split()</h3>
+<ul>
+  <li>str.strip() 메소드를 활용하여 문자열 양 끝에서 원하는 연속된 문자열을 삭제할 수 있다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 2진수 '100100010000' 의 경우,
+</span>
+<span class="s">'100100010000'</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'0'</span><span class="p">)</span>
+<span class="c1"># '10010001'
+# 좌, 우 끝의 모든 연속된 0을 삭제
+</span>
+<span class="s">'100100010000'</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'0'</span><span class="p">).</span><span class="n">strip</span><span class="p">(</span><span class="s">'1'</span><span class="p">)</span>
+<span class="c1"># '001000'
+# 좌,우 끝의 모든 연속된 1을 삭제
+</span>
+<span class="s">'100100010000'</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'0'</span><span class="p">).</span><span class="n">strip</span><span class="p">(</span><span class="s">'1'</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">'1'</span><span class="p">)</span>
+<span class="c1"># ['00', '000']
+# 1을 기준으로 문자열을 나눠 배열에 담는다
+</span></code></pre></div></div>
+
+<h2 id="시간-복잡도-측정-time-complexity">시간 복잡도 측정 (time complexity)</h2>
+<ul>
+  <li><a href="http://www.hanbit.co.kr/network/category/category_view.html?cms_code=CMS5648300711">참고자료-추천</a>, <a href="http://www.mydiyworld.net/?p=440">참고자료</a>,</li>
+  <li>Big O  표기법은 컴퓨터 공학에서 알고리즘의 복잡도 또는 성능을 표현하기 위해 사용된다.  <strong>Big O는 특히 최악의 경우를 표현하며</strong>, 특정 알고리즘을 수행하는데 특정 시간안에 수행된다는 것을 보장한다는 의미를 가진다.</li>
+  <li>Bio 표기법 종류 (상세 내용은 자료 참고)
+    <ul>
+      <li>O(1), O(N), O(N^2), O(2^N), O(log N), O(N log N)</li>
+      <li>이진 탐색 같은 알고리즘은 O(log N)의 성능을 가지며 대용량의 데이터를 처리하는데 아주 효율적이다.</li>
+    </ul>
+  </li>
+  <li>알고리즘의 계산복잡도를 결정하는 요소는 크게 네 가지로 구분할 수 있다.
+    <ul>
+      <li>단순 반복문(루프)</li>
+      <li>재귀호출</li>
+      <li>테스트 문(IF, WHILE, 또는 UNTIL)</li>
+      <li>함수의 호출</li>
+    </ul>
+  </li>
+  <li><strong>반복문의 계산복잡도는</strong> 반복되는 횟수를 통해 쉽게 구할 수 있고, 입력값의 수에 대해 항상 일정하고, <strong>입력되는 값에 좌우되지 않는다</strong>.
+(각 명령이 끝날 때마다 실행 횟수를 적고 더한 후, 상수는 생략하고 최고차항만 고려한다.)</li>
+  <li>반면에 재귀호출이나 테스트 문의 경우에는 새로운 문제를 야기시키는데, 입력되는 값이 따라 계산 복잡도가 바뀌는 것이다. 일반적으로 세 가지 경우를 생각한다. Best Case, Average Case, Worst Case가 그것이다.</li>
+</ul>
+
+  </article>
+</div>
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://jungpadak-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/haha/nodejs/2021/06/25/%EC%B2%AB%EA%B8%80/">
+            nodejs 설치 및 실행
+            <small>25 Jun 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/algorithm/2017/11/04/nested-list/">
+            hackerrank - Nested Lists
+            <small>04 Nov 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/algorithm/2017/11/04/Finding-the-percentage/">
+            hackerrank - Finding the percentage
+            <small>04 Nov 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+<div class="comments">
+  <h2>Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+var disqus_config = function () {
+  this.page.url = 'http://localhost:4000/algorithm/2017/04/24/binarygap/'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = '/algorithm/2017/04/24/binarygap'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = '//jungpadak-github-io.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if (target === toggle) {
+            checkbox.checked = !checkbox.checked;
+            e.preventDefault();
+          } else if (checkbox.checked && !sidebar.contains(target)) {
+            /* click outside the sidebar when sidebar is open */
+            checkbox.checked = false;
+          }
+        }, false);
+      })(document);
+    </script>
+    
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-00000000-1', 'auto');
+ga('send', 'pageview');
+    </script>
+    
+  </body>
+  
+  <script id="dsq-count-scr" src="//jungpadak-github-io.disqus.com/count.js" async></script>
+  
+</html>

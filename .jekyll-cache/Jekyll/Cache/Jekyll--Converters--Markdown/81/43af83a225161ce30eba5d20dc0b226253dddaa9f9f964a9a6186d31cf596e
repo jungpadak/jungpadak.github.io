@@ -1,0 +1,63 @@
+I"�<h1 id="level-2-이상한-문자-만들기">level 2. 이상한 문자 만들기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/115">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>toWeirdCase함수는 문자열 s를 매개변수로 입력받습니다.
+문자열 s에 각 단어의 짝수번째 인덱스 문자는 대문자로, 홀수번째 인덱스 문자는 소문자로 바꾼 문자열을 리턴하도록 함수를 완성하세요.
+예를 들어 s가 “try hello world”라면 첫 번째 단어는 “TrY”, 두 번째 단어는 “HeLlO”, 세 번째 단어는 “WoRlD”로 바꿔 “TrY HeLlO WoRlD”를 리턴하면 됩니다.</p>
+
+<p>주의 문자열 전체의 짝/홀수 인덱스가 아니라, 단어(공백을 기준)별로 짝/홀수 인덱스를 판단합니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+
+<h3 id="1">1</h3>
+<p>map을 활용해서 풀었다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">toWeirdCase</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># 홀수
+</span>                <span class="n">result</span> <span class="o">+=</span> <span class="n">v</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># 짝수
+</span>                <span class="n">result</span> <span class="o">+=</span> <span class="n">v</span><span class="p">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">return</span> <span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">change</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">split</span><span class="p">())))</span>
+
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">"결과 : {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">toWeirdCase</span><span class="p">(</span><span class="s">"try hello world"</span><span class="p">)));</span>
+</code></pre></div></div>
+<h3 id="2">2</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">toWeirdCase</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>    
+	<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+	<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+		<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+			<span class="k">if</span> <span class="n">j</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+				<span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">:].</span><span class="n">replace</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">lower</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">:].</span><span class="n">replace</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">upper</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+		<span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>       
+	<span class="k">return</span> <span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">"결과 : {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">toWeirdCase</span><span class="p">(</span><span class="s">"try hello world"</span><span class="p">)));</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">toWeirdCase</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>    
+  <span class="k">return</span> <span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span><span class="p">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">c</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">w</span><span class="p">)])</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">s</span><span class="p">.</span><span class="n">split</span><span class="p">())</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>문자열은 인덱스를 통해서 문자열 일부를 수정 교체 할 수 없다.</li>
+  <li>문자열을 수정하려면 replace를 하거나, + 연산자를 사용해야 한다.</li>
+  <li><code class="highlighter-rouge">3항 연산자</code>를 잘 활용하자 A if 조건 else B</li>
+</ul>
+:ET

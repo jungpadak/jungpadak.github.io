@@ -1,0 +1,61 @@
+I"�	<blockquote>
+  <p><a href="https://opentutorials.org/course/195">생활코딩 - MySQL </a></p>
+</blockquote>
+
+<h2 id="sql">SQL</h2>
+<ul>
+  <li>Structured Query Language</li>
+  <li>데이터베이스에서 데이터를 저장하거나 얻기 위해서 사용하는 <strong>표준화된</strong> 언어.</li>
+</ul>
+
+<h3 id="database">Database</h3>
+<ul>
+  <li>데이터가 실질적으로 적재되는 테이블들을 분류하는 상위 개념</li>
+</ul>
+
+<h3 id="생성">생성</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE DATABASE <span class="sb">`</span>데이터베이스명<span class="sb">`</span> CHARACTER SET utf8 COLLATE utf8_general_ci<span class="p">;</span>
+</code></pre></div></div>
+<h3 id="삭제">삭제</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DROP DATABASE <span class="sb">`</span>데이터베이스명<span class="sb">`</span><span class="p">;</span>
+</code></pre></div></div>
+<h3 id="열람">열람</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SHOW DATABASE<span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="선택">선택</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE <span class="sb">`</span>데이터베이스명<span class="sb">`</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="phpmyadmin">phpmyadmin</h2>
+<ul>
+  <li>웹 환경에서 DB를 제어할 수 있는 mysql client</li>
+</ul>
+
+<h3 id="실행방법">실행방법</h3>
+<ul>
+  <li>Bitnami 설치 - <a href="https://opentutorials.org/course/1688/9338">참고자료</a></li>
+  <li>Bitnami 실행 후 MySQL, Apache Web Server 구동</li>
+  <li>http://localhost:8080/phpmyadmin/ 접속 (open phpMyAdmin)</li>
+  <li>bitnami 설치시 지정한 암호로 (id : root) 접속</li>
+</ul>
+
+<center>
+<figure>
+<img src="/assets/post-img/mysql/bitnami.png" alt="views" />
+<figcaption>bitnami 설치를 통한 내부 웹서버 구동</figcaption>
+</figure>
+</center>
+
+<h2 id="자료">자료</h2>
+<ul>
+  <li><a href="http://www.mysqlkorea.com/sub.html?mcode=manual&amp;scode=01&amp;lang=k">mysql 한글 메뉴얼</a></li>
+  <li><a href="https://www.w3schools.com/sql/default.asp">w3school</a></li>
+  <li><a href="http://cse.unl.edu/~sscott/ShowFiles/SQL/CheatSheet/SQLCheatSheet.html">cheat sheet</a></li>
+  <li><a href="http://database.sarang.net/?criteria=mysql">데이터베이스 사랑넷</a></li>
+</ul>
+:ET

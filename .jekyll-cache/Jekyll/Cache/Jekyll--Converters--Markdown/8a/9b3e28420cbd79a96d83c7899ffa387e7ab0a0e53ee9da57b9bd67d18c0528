@@ -1,0 +1,101 @@
+I"�%<h1 id="level-1-평균구하기">level 1. 평균구하기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/128">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>def average(list):
+함수를 완성해서 매개변수 list의 평균값을 return하도록 만들어 보세요.
+어떠한 크기의 list가 와도 평균값을 구할 수 있어야 합니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+	<span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+		<span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="n">i</span>
+	<span class="k">return</span> <span class="n">v</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"평균값 : {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">average</span><span class="p">(</span><span class="nb">list</span><span class="p">)));</span>
+</code></pre></div></div>
+
+<ul>
+  <li>4개월 뒤에 해당 다시 풀어보았다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#풀이1 - ZeroDivisionError 예외처리 필요
+</span><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1"># sum() - O(N) 시간복잡도
+</span>
+<span class="c1">#풀이2 - ZeroDivisionError 예외처리
+</span><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="c1">#풀이3 - reduce, lambda
+</span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+<span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>sum 함수를 사용하면 리스트 각 요소들의 총 합을 구할 수 있구나!</li>
+</ul>
+
+<hr />
+
+<h2 id="풀이-1-java">풀이 1 (java)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetMean</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getMean</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">e</span> <span class="o">:</span> <span class="n">array</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">sum</span> <span class="o">+=</span> <span class="n">e</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+	<span class="o">}</span>
+
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">x</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{</span><span class="mi">5</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">};</span>
+		<span class="nc">GetMean</span> <span class="n">getMean</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GetMean</span><span class="o">();</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"평균값 : "</span> <span class="o">+</span> <span class="n">getMean</span><span class="o">.</span><span class="na">getMean</span><span class="o">(</span><span class="n">x</span><span class="o">));</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="풀이-2-java">풀이 2 (java)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.stream.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetMean</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getMean</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="nc">IntStream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">array</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+		<span class="k">return</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+	<span class="o">}</span>
+
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">x</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{</span><span class="mi">5</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">};</span>
+		<span class="nc">GetMean</span> <span class="n">getMean</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GetMean</span><span class="o">();</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"평균값 : "</span> <span class="o">+</span> <span class="n">getMean</span><span class="o">.</span><span class="na">getMean</span><span class="o">(</span><span class="n">x</span><span class="o">));</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="배운점-1">배운점</h2>
+<ul>
+  <li>java.util.stream 패키지를 통해서 array의 합계를 구할 수 있다.</li>
+</ul>
+:ET

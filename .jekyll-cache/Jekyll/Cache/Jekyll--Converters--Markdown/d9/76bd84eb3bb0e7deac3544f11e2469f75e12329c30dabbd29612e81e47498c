@@ -1,0 +1,41 @@
+I"z<h1 id="level-1-핸드폰번호-가리기">level 1. 핸드폰번호 가리기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/133">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>별이는 헬로월드텔레콤에서 고지서를 보내는 일을 하고 있습니다. 개인정보 보호를 위해 고객들의 전화번호는 맨 뒷자리 4자리를 제외한 나머지를 "*"으로 바꿔야 합니다.
+전화번호를 문자열 s로 입력받는 hide_numbers함수를 완성해 별이를 도와주세요
+예를들어 s가 "01033334444"면 "*******4444"를 리턴하고, "027778888"인 경우는 "*****8888"을 리턴하면 됩니다.
+</code></pre></div></div>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#풀이 1 - slice 활용
+</span><span class="k">def</span> <span class="nf">hide_numbers</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="s">'*'</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="c1"># slice 시간복잡도 O(N)
+</span>
+<span class="c1"># 풀이 2
+</span><span class="k">def</span> <span class="nf">hide_numbers</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">],</span> <span class="s">'*'</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">"결과 : "</span> <span class="o">+</span> <span class="n">hide_numbers</span><span class="p">(</span><span class="s">'01033334444'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hide_numbers</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="c1">#함수를 완성해 별이를 도와주세요
+</span>    <span class="k">return</span> <span class="s">"*"</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">"결과 : "</span> <span class="o">+</span> <span class="n">hide_numbers</span><span class="p">(</span><span class="s">'01033334444'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+
+<ul>
+  <li>문제를 풀면 바로 풀이를 보지 말고, 더 효율적으로 접근하는 방법에 대해서 한번 더 고민해보자.</li>
+</ul>
+:ET

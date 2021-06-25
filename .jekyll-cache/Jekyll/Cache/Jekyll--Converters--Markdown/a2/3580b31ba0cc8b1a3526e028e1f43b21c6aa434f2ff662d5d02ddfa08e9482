@@ -1,0 +1,49 @@
+I"�<blockquote>
+  <p><a href="https://opentutorials.org/course/195">생활코딩 - MySQL </a></p>
+</blockquote>
+
+<h1 id="정렬-order-by">정렬 (order by)</h1>
+<ul>
+  <li>지정된 칼럼을 기준으로 행을 정렬</li>
+</ul>
+
+<h2 id="문법">문법</h2>
+<ul>
+  <li>DESC (descending order) : 내림차순</li>
+  <li>ASC (ascending order) : 오름차순</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT <span class="k">*</span> FROM 테이블명 ORDER BY 정렬의 기준으로 사용할 열 <span class="o">[</span>DESC | ASC]
+</code></pre></div></div>
+<h2 id="예제">예제</h2>
+
+<h3 id="대상-테이블">대상 테이블</h3>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DROP TABLE IF EXISTS <span class="sb">`</span>student<span class="sb">`</span><span class="p">;</span>
+CREATE TABLE <span class="sb">`</span>student<span class="sb">`</span> <span class="o">(</span>
+  <span class="sb">`</span><span class="nb">id</span><span class="sb">`</span> tinyint<span class="o">(</span>4<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>name<span class="sb">`</span> char<span class="o">(</span>4<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>sex<span class="sb">`</span> enum<span class="o">(</span><span class="s1">'남자'</span>,<span class="s1">'여자'</span><span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>address<span class="sb">`</span> varchar<span class="o">(</span>50<span class="o">)</span> NOT NULL,
+  <span class="sb">`</span>distance<span class="sb">`</span> INT NOT NULL,
+  <span class="sb">`</span>birthday<span class="sb">`</span> datetime NOT NULL,
+  PRIMARY KEY <span class="o">(</span><span class="sb">`</span><span class="nb">id</span><span class="sb">`</span><span class="o">)</span>
+<span class="o">)</span> <span class="nv">ENGINE</span><span class="o">=</span>InnoDB DEFAULT <span class="nv">CHARSET</span><span class="o">=</span>utf8<span class="p">;</span>
+
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>2, <span class="s1">'박재숙'</span>, <span class="s1">'남자'</span>, <span class="s1">'서울'</span>,  10, <span class="s1">'1985-10-26 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>1, <span class="s1">'이숙경'</span>, <span class="s1">'여자'</span>, <span class="s1">'청주'</span>, 200, <span class="s1">'1982-11-16 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>3, <span class="s1">'백태호'</span>, <span class="s1">'남자'</span>, <span class="s1">'경주'</span>, 350, <span class="s1">'1989-2-10 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>4, <span class="s1">'김경훈'</span>, <span class="s1">'남자'</span>, <span class="s1">'제천'</span>, 190, <span class="s1">'1979-11-4 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>8, <span class="s1">'김정인'</span>, <span class="s1">'남자'</span>, <span class="s1">'대전'</span>, 200, <span class="s1">'1990-10-1 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>6, <span class="s1">'김경진'</span>, <span class="s1">'여자'</span>, <span class="s1">'제주'</span>, 400, <span class="s1">'1985-1-1 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+INSERT INTO <span class="sb">`</span>student<span class="sb">`</span> VALUES <span class="o">(</span>7, <span class="s1">'박경호'</span>, <span class="s1">'남자'</span>, <span class="s1">'영동'</span>, 310, <span class="s1">'1981-2-3 00:00:00'</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="정렬-order-by-예시">정렬 order by 예시</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># distance 내림차순으로 테이블 정렬</span>
+<span class="k">select</span> <span class="k">*</span> from student order by distance desc<span class="p">;</span>
+
+<span class="c"># distance 내림차순, address 오름차순으로 테이블 정렬</span>
+<span class="k">select</span> <span class="k">*</span> from student order by distance desc, address asc<span class="p">;</span>
+</code></pre></div></div>
+:ET

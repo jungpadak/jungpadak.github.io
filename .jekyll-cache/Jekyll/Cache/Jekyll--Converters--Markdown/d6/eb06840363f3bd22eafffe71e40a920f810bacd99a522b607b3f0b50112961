@@ -1,0 +1,37 @@
+I"�<h1 id="level-2-자연수를-뒤집어-리스트로-만들기">level 2. 자연수를 뒤집어 리스트로 만들기</h1>
+<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/117">출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>digit_reverse함수는 양의 정수 n을 매개변수로 입력받습니다.
+n을 뒤집어 숫자 하나하나를 list로 표현해주세요
+예를들어 n이 12345이면 [5,4,3,2,1]을 리턴하면 됩니다.</p>
+
+<h2 id="풀이-python">풀이 (python)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">digit_reverse</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="nb">list</span><span class="p">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">list</span>
+
+<span class="c1"># 아래는 테스트로 출력해 보기 위한 코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">"결과 : {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">digit_reverse</span><span class="p">(</span><span class="mi">12345</span><span class="p">)));</span>
+</code></pre></div></div>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 풀이1
+</span><span class="k">def</span> <span class="nf">digit_reverse</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># 풀이2
+</span><span class="k">def</span> <span class="nf">digit_reverse</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">))))</span>    
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>.reverse() 메소드를 통해서 리스트 요소의 순서를 뒤집을 수 있다. 하지만 결과값을 리턴하지는 않는다.</li>
+  <li>map(function, iterable)은 함수(f)와 반복 가능한(iterable) 자료형을 입력으로 받는다. map은 입력받은 자료형의 각 요소가 함수 f에 의해 수행된 결과를 묶어서 리턴한다.</li>
+  <li>reversed() 함수를 통해 리스트 요소의 순서를 뒤집은 객체를 리턴한다.</li>
+</ul>
+:ET

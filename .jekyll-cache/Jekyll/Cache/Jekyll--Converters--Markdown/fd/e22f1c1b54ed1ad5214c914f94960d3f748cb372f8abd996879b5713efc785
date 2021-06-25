@@ -1,0 +1,102 @@
+I"�(<blockquote>
+  <p><a href="http://tryhelloworld.co.kr/challenge_codes/23">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+<p>어떤 문장의 각 알파벳을 일정한 거리만큼 밀어서 다른 알파벳으로 바꾸는 암호화 방식을 시저 암호라고 합니다.
+A를 3만큼 밀면 D가 되고 z를 1만큼 밀면 a가 됩니다. 공백은 수정하지 않습니다.
+보낼 문자열 s와 얼마나 밀지 알려주는 n을 입력받아 암호문을 만드는 ceasar 함수를 완성해 보세요.
+“a B z”,4를 입력받았다면 “e F d”를 리턴합니다.</p>
+
+<h2 id="풀이">풀이</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">string</span>
+
+<span class="k">def</span> <span class="nf">caesar</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">alphabet_lower</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="n">ascii_lowercase</span><span class="p">)</span>
+    <span class="n">alphabet_upper</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="n">ascii_uppercase</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">alphabet_lower</span><span class="p">:</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">alphabet_lower</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">alphabet_lower</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">alphabet_upper</span><span class="p">:</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">alphabet_upper</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">alphabet_upper</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+
+<span class="c1"># 실행을 위한 테스트코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">'s는 "a B z", n은 4인 경우: '</span> <span class="o">+</span> <span class="n">caesar</span><span class="p">(</span><span class="s">"a B z"</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="풀이-과정">풀이 과정</h2>
+<ul>
+  <li>알파벳 대문자, 소문자 리스트를 준비</li>
+  <li>매개변수 문자열 s를 list로 변환</li>
+  <li>해당 list의 각 요소를 순회하면서
+    <ul>
+      <li>해당 문자가 대문자 혹은 소문자에 포함된다면,
+        <ul>
+          <li>알파벳 리스트에서 해당 문자의 index 값을 찾아서 매개변수 n을 더하고, 알파벳의 길이인 26으로 나눈 나머지를 구한다.</li>
+          <li>해당 나머지 값을 index 값으로 갖는 문자를 찾아서 리스트 s의 요소를 변경한다.</li>
+        </ul>
+      </li>
+      <li>해당 문자가 대문자 혹은 소문자 둘다 포함되지 않는다면 pass 한다.</li>
+    </ul>
+  </li>
+  <li>반복이 끝나면, 리스트 s를 문자열로 변환한다.</li>
+</ul>
+
+<h2 id="다른사람-풀이">다른사람 풀이</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 풀이 1
+</span><span class="kn">import</span> <span class="nn">string</span>
+
+
+<span class="k">def</span> <span class="nf">caesar</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_lowercase</span><span class="p">:</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_lowercase</span>
+        <span class="k">elif</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_uppercase</span><span class="p">:</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_uppercase</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">c</span>
+            <span class="k">continue</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">base</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">base</span><span class="p">[</span><span class="n">a</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">base</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="c1"># 실행을 위한 테스트코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">'s는 "a B z", n은 4인 경우: '</span> <span class="o">+</span> <span class="n">caesar</span><span class="p">(</span><span class="s">"a B z"</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># 풀이 2
+</span>
+<span class="k">def</span> <span class="nf">caesar</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">no</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">plain</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span><span class="p">.</span><span class="n">isalpha</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">k</span><span class="p">.</span><span class="n">islower</span><span class="p">():</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">((</span><span class="nb">ord</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">"a"</span><span class="p">)</span> <span class="o">+</span> <span class="n">no</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="s">"a"</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">((</span><span class="nb">ord</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">"A"</span><span class="p">)</span> <span class="o">+</span> <span class="n">no</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="s">"A"</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">k</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># 실행을 위한 테스트코드입니다.
+</span><span class="k">print</span><span class="p">(</span><span class="s">'s는 "a B z", n은 4인 경우: '</span> <span class="o">+</span> <span class="n">caesar</span><span class="p">(</span><span class="s">"a B z"</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<h2 id="배운점">배운점</h2>
+<ul>
+  <li>chr(x) 을 통해서 ascii 코드 10진수, 16진수를 문자로 바꿀 수 있다.</li>
+  <li>ord(x) 를 통해서 axcii 문자를 10진수로 바꿀 수 있다.</li>
+</ul>
+:ET

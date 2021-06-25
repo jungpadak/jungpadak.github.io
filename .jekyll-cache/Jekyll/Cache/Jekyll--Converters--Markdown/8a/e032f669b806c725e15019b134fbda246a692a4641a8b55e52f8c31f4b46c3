@@ -1,0 +1,62 @@
+I"|<blockquote>
+  <p><a href="https://leetcode.com/problems/hamming-distance/description/">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
+
+Given two integers x and y, calculate the Hamming distance.
+
+Note:
+0 ≤ x, y &lt; 2**31.
+
+Example:
+
+Input: x = 1, y = 4
+
+Output: 2
+
+Explanation:
+1   (0 0 0 1)
+4   (0 1 0 0)
+       ↑   ↑
+
+The above arrows point to positions where the corresponding bits are different.
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="풀이코드">풀이코드</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hamming_distance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">bin_x</span> <span class="o">=</span> <span class="nb">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">"032b"</span><span class="p">)</span>
+    <span class="n">bin_y</span> <span class="o">=</span> <span class="nb">format</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="s">"032b"</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">bin_x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">bin_y</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+<ul>
+  <li>format() 함수를 활용 (<a href="https://stackoverflow.com/questions/16926130/convert-to-binary-and-keep-leading-zeros-in-python">참고</a>)</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; format(10, '010b')
+# '0000001010'
+&gt;&gt;&gt; format(10, 'b')
+# '1010'
+&gt;&gt;&gt; format(10, '#b')
+# '0b1010'
+</code></pre></div></div>
+
+<h2 id="다른사람풀이">다른사람풀이</h2>
+<ul>
+  <li>비트연산자 XOR연산 활용 (XOR연산은 각 자릿수를 비교하여 다르면 1, 같으면 0)</li>
+  <li>비트연산자 참고 (<a href="https://www.codecademy.com/ko/courses/python-intermediate-ko-0tdxd/0/1">codecademy</a>)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hamming_distance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+  <span class="k">return</span> <span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="n">y</span><span class="p">).</span><span class="n">count</span><span class="p">(</span><span class="s">'1'</span><span class="p">)</span>
+</code></pre></div></div>
+:ET

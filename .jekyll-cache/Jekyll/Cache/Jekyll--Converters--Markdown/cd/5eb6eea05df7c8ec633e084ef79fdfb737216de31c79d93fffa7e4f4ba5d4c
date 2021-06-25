@@ -1,0 +1,19 @@
+I"�	<h2 id="문제">문제</h2>
+<p>2016년 1월 1일은 금요일입니다. 2016년 A월 B일은 무슨 요일일까요?
+두 수 A,B를 입력받아 A월 B일이 무슨 요일인지 출력하는 getDayName 함수를 완성하세요.
+요일의 이름은 일요일부터 토요일까지 각각</p>
+
+<p>SUN,MON,TUE,WED,THU,FRI,SAT</p>
+
+<p>를 출력해주면 됩니다.
+예를 들어 A=5, B=24가 입력된다면 5월 24일은 화요일이므로 TUE를 반환하면 됩니다.</p>
+
+<h2 id="풀이코드">풀이코드</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getDayName</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">days</span><span class="o">=</span><span class="p">[</span><span class="s">"FRI"</span><span class="p">,</span><span class="s">"SAT"</span><span class="p">,</span><span class="s">"SUN"</span><span class="p">,</span><span class="s">"MON"</span><span class="p">,</span><span class="s">"TUE"</span><span class="p">,</span><span class="s">"WED"</span><span class="p">,</span><span class="s">"THU"</span><span class="p">]</span>
+    <span class="n">months</span><span class="o">=</span><span class="p">[</span><span class="mi">31</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">31</span><span class="p">]</span>
+    <span class="n">day_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">day_num</span><span class="p">[:</span><span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="n">B</span>
+    <span class="k">return</span> <span class="n">day_list</span><span class="p">[(</span><span class="n">day_total</span> <span class="o">%</span> <span class="mi">7</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+:ET

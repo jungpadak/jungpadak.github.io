@@ -1,0 +1,76 @@
+I"�<blockquote>
+  <p><a href="https://programmers.co.kr/learn/challenge_codes/38">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>자연수 N개로 이루어진 집합 중에, 각 원소의 합이 S가 되는 수의 집합은 여러 가지가 존재합니다.
+최고의 집합은, 위의 조건을 만족하는 집합 중 각 원소의 곱이 최대가 되는 집합을 의미합니다.
+
+집합 원소의 개수 n과 원소들의 합 s가 주어지면,
+최고의 집합을 찾아 원소를 오름차순으로 반환해주는 bestSet 함수를 만들어 보세요.
+만약 조건을 만족하는 집합이 없을 때는 배열 맨 앞에 –1을 담아 반환하면 됩니다.
+예를 들어 n=3, s=13이면 [4,4,5]가 반환됩니다.
+(자바는 집합이 없는 경우 크기가 1인 배열에 -1을 담아 반환해주세요.)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="풀이코드">풀이코드</h2>
+<ul>
+  <li>처음에는 itertools, functools 모듈을 임포트해서 주어진 길이와 합 조건에 맞는 모든 리스트의 경우의 수를 구했다.</li>
+  <li>모든 경우의 수를 구하고 for 문을 돌리다 보니 실행시간이 오래 걸리는 문제가 발생한다.</li>
+  <li>참 어렵게도 풀었다..</li>
+</ul>
+
+<h3 id="첫번재-시도---느리다">첫번재 시도 - 느리다</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bestSet</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">itertools</span>
+    <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">combinations</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="p">.</span><span class="n">combinations_with_replacement</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">s</span><span class="p">]</span>
+    <span class="n">multiply_li</span> <span class="o">=</span> <span class="p">[</span><span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">combination</span><span class="p">)</span> <span class="k">for</span> <span class="n">combination</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">]</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">multiply_li</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">multiply_li</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<h3 id="두번째-시도">두번째 시도</h3>
+<ul>
+  <li>첫번째 방법으로 풀고나니 이렇게 어렵게 풀 문제가 아닌것 같다는 생각이 들었다.</li>
+  <li>단순한 예시를 사용해서 곱이 최대가 되는 경우를 살펴보니 각 요소의 편차가 가장 작을 때 곱이 최대가 되는것 같다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bestSet</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">portion</span><span class="p">,</span> <span class="n">remainder</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">li</span> <span class="o">=</span> <span class="p">[</span><span class="n">portion</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">remainder</span><span class="p">):</span>
+        <span class="n">li</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="세번째-시도">세번째 시도</h3>
+<ul>
+  <li>remainder를 분배하는 부분을 조금 다른 방식으로 만들어보았다.</li>
+  <li>편차가 가장 작을 때 곱이 최대가 되는 부분에 대해서 찾아보니 아래와 같은 증명이 있다.
+    <ul>
+      <li><a href="http://tip.daum.net/question/62487070">합이 일정할때 곱의 최대는 두 수의 차가 최소일때인 이유를 증명해주세요.</a></li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bestSet</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">portion</span><span class="p">,</span> <span class="n">remainder</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">li</span> <span class="o">=</span> <span class="p">[</span><span class="n">portion</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="k">while</span> <span class="n">remainder</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">li</span><span class="p">[</span><span class="n">li</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">li</span><span class="p">))]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">remainder</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</code></pre></div></div>
+:ET

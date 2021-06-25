@@ -1,0 +1,78 @@
+I"@<blockquote>
+  <p><a href="https://leetcode.com/problems/judge-route-circle/description/">문제출처</a></p>
+</blockquote>
+
+<h2 id="문제">문제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Initially, there is a Robot at position (0, 0). Given a sequence of its moves, judge if this robot makes a circle, which means it moves back to the original place.
+
+The move sequence is represented by a string. And each move is represent by a character. The valid robot moves are R (Right), L (Left), U (Up) and D (down). The output should be true or false representing whether the robot makes a circle.
+
+Example 1:
+
+Input: "UD"
+Output: true
+
+Example 2:
+
+Input: "LL"
+Output: false
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="풀이코드">풀이코드</h2>
+
+<ul>
+  <li>풀이 1
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">judge_circle</span><span class="p">(</span><span class="n">moves</span><span class="p">):</span>
+  <span class="s">"""
+  :type moves: str
+  :rtype: bool
+  """</span>
+  <span class="n">location</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+  <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">moves</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s">"R"</span><span class="p">:</span>
+          <span class="n">loaction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s">"L"</span><span class="p">:</span>
+          <span class="n">loaction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s">"U"</span><span class="p">:</span>
+          <span class="n">loaction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s">"D"</span><span class="p">:</span>
+          <span class="n">loaction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+  <span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">location</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="bp">False</span>
+</code></pre></div>    </div>
+  </li>
+  <li>풀이 2
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">judge_circle</span><span class="p">(</span><span class="n">moves</span><span class="p">):</span>
+  <span class="s">"""
+  :type moves: str
+  :rtype: bool
+  """</span>
+  <span class="n">location</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+  <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s">"R"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+      <span class="s">"L"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+      <span class="s">"U"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+      <span class="s">"D"</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">moves</span><span class="p">:</span>
+      <span class="n">location</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">dic</span><span class="p">[</span><span class="n">direction</span><span class="p">])]</span>
+  <span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">location</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="bp">False</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="다른사람풀이">다른사람풀이</h2>
+<ul>
+  <li>간단하다! 앞으로는 좀 쉽게 생각해보자</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">judge_circle</span><span class="p">(</span><span class="n">moves</span><span class="p">):</span>
+    <span class="s">"""
+    :type moves: str
+    :rtype: bool
+    """</span>
+    <span class="k">return</span> <span class="n">moves</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"U"</span><span class="p">)</span><span class="o">==</span><span class="n">moves</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"D"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">moves</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"L"</span><span class="p">)</span><span class="o">==</span><span class="n">moves</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"R"</span><span class="p">)</span>
+</code></pre></div></div>
+:ET

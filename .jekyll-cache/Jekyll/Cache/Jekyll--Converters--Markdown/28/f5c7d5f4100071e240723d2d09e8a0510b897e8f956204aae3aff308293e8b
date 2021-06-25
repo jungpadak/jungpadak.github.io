@@ -1,0 +1,31 @@
+I"L<h1 id="nodejs-설치-및-실행">nodejs 설치 및 실행</h1>
+<blockquote>
+  <p><a href="https://opentutorials.org/course/2136/11852">생활코딩 Node.js 강의</a></p>
+</blockquote>
+
+<p>Node.js는 자바스크립트(JavaScript)로 서버 프로그래밍을 할 수 있도록 해주는 플랫폼</p>
+
+<h2 id="설치">설치</h2>
+<ul>
+  <li>nodejs.org 에서 파일 다운로드 후 설치</li>
+  <li>또는 npm 을 통하여 설치 (installing Node.js via package manager)</li>
+  <li>터미널에서 <code class="highlighter-rouge">node --version</code> 명령어 통해서 버전 확인</li>
+</ul>
+
+<h2 id="실행">실행</h2>
+<ul>
+  <li>
+    <p>js 파일 작성 (ex. nodejs/hello.js)</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">터미널 &gt; cd nodejs (js 파일이 들어있는 폴더로 이동) &gt; node hello.js</code></p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ node hello.js
+Hello world
+</code></pre></div>    </div>
+  </li>
+</ul>
+:ET
